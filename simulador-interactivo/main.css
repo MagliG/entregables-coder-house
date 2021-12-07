@@ -1,0 +1,25 @@
+body{
+    height:100%;
+    margin: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: #171C56;
+
+  }
+
+  section {
+    height: 80px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  h1 {
+      color: white;
+      font: 150% sans-serif;
+  }
+
+  p {
+    color: white;
+    font: 100% sans-serif;
+}
