@@ -31,6 +31,9 @@ if( restauranteElegido != null){
             verificarCuposMesa(cantidadMesasDisponiblesDos)
             break;
         }
+        default:{
+            alert("El restaurante elegido no existe")
+        }
     }
 }
 
