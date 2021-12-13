@@ -9,6 +9,10 @@ class Restaurante{
         this.menuPrincipal = menuPrincipal,
         this.postre = postre
     }
+
+    tieneMesasDisponibles(){
+        return (this.mesasDisponibles > 0)
+    }
 }
 
 class Entrada{
@@ -35,13 +39,6 @@ class Postre{
     }
 }
 
-
-// const entradasBirra = []
-// const menuPrincipalBirra = []
-// const postresBirra = []
-// const birraBar = new Restaurante("La Birra Bar", "Gurruchaga 729, CABA", "Hamburguesería", 26, 18, entradasBirra, menuPrincipalBirra, postresBirra)
-
-
 // Francisca del Fuego
 const tablaQuesos = new Entrada("Tabla de Quesos", "Quesos artesanales selccionados", 550)
 const berenjenaAhumada = new Entrada("Berenjena Ahumada", "Berenjena ahumada con eucalipto, straciatella, alioli de perejil, alcaparras secas, y pickle de pasas de uva.", 550)
@@ -54,9 +51,39 @@ const flanDDL = new Postre("Flan de Dulce de Leche", "Flan de dulce de leche, va
 const entradasFrancisca = [tablaQuesos, berenjenaAhumada, carpaccioZucchini]
 const menuPrincipalFrancisca = [margherita, funghi, pancetaHuevo]
 const postresFrancisca = [tiramisu, flanDDL]
-const franciscaDelFuego = new Restaurante("Francisca del Fuego", "Av. Corrientes 1368", "Pizzería", 40, 11, entradasFrancisca, menuPrincipalFrancisca, postresFrancisca)
+const franciscaDelFuego = new Restaurante("Francisca del Fuego", "Av. Corrientes 1368", "Pizzería", 40, 0, entradasFrancisca, menuPrincipalFrancisca, postresFrancisca)
 
-// const restaurantes = [birraBar, franciscaDelFuego]
+//Restaurante 2
+const restauranteDos = new Restaurante()
+
+//Restaurante 3
+const restauranteTres = new Restaurante()
+
+const restaurantes = [franciscaDelFuego]
+const restaurantesDisponibles = []
+
+function disponibilidadRestaurantes(){
+    for(let i = 0; i < restaurantes.length; i++){
+        if(restaurantes[i].tieneMesasDisponibles()){
+            restaurantesDisponibles.push(restaurantes[i])
+        }
+    }
+}
+
+function mostrarRestaurantesDisponibles(){
+    if(restaurantesDisponibles.length > 0){
+        for(let i = 0; i < restaurantesDisponibles.length; i++){
+            console.log("Nombre restaurantes disponibles: ", restaurantesDisponibles[i].nombre)
+        }
+    }else{
+        alert("No hay restaurantes disponibles en este momento. Por favor, intente en unos minutos.")
+    }
+}
+
+disponibilidadRestaurantes()
+console.log("Restaurantes disponibles", restaurantesDisponibles)
+mostrarRestaurantesDisponibles()
+
 
 
 let ubicacionPrincipal = window.pageYOffset;
