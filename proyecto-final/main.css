@@ -191,7 +191,7 @@ nav {
 }
 
 .elemento:hover {
-  box-shadow: 0 4px 10px rgba(57, 248, 199, .26);
+  box-shadow: 0 6px 12px rgba(57, 248, 199, .26);
 }
 
 .elemento > i {
