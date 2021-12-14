@@ -73,16 +73,21 @@ function disponibilidadRestaurantes(){
 function mostrarRestaurantesDisponibles(){
     if(restaurantesDisponibles.length > 0){
         for(let i = 0; i < restaurantesDisponibles.length; i++){
-            console.log("Nombre restaurantes disponibles: ", restaurantesDisponibles[i].nombre)
+            alert("Nombre restaurantes disponibles: ", restaurantesDisponibles[i].nombre)
         }
     }else{
         alert("No hay restaurantes disponibles en este momento. Por favor, intente en unos minutos.")
+        break;
     }
+    seleccionarRestaurante()
 }
 
 disponibilidadRestaurantes()
 console.log("Restaurantes disponibles", restaurantesDisponibles)
 mostrarRestaurantesDisponibles()
+
+const restauranteSeleccionado = prompt("Seleccionar restaurante: " )
+
 
 
 
