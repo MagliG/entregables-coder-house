@@ -51,7 +51,7 @@ const flanDDL = new Postre("Flan de Dulce de Leche", "Flan de dulce de leche, va
 const entradasFrancisca = [tablaQuesos, berenjenaAhumada, carpaccioZucchini]
 const menuPrincipalFrancisca = [margherita, funghi, pancetaHuevo]
 const postresFrancisca = [tiramisu, flanDDL]
-const franciscaDelFuego = new Restaurante("Francisca del Fuego", "Av. Corrientes 1368", "Pizzería", 40, 0, entradasFrancisca, menuPrincipalFrancisca, postresFrancisca)
+const franciscaDelFuego = new Restaurante("Francisca del Fuego", "Av. Corrientes 1368", "Pizzería", 40, 2, entradasFrancisca, menuPrincipalFrancisca, postresFrancisca)
 
 //Restaurante 2
 const restauranteDos = new Restaurante()
@@ -61,6 +61,10 @@ const restauranteTres = new Restaurante()
 
 const restaurantes = [franciscaDelFuego]
 const restaurantesDisponibles = []
+let entradaSeleccionada = ""
+let menuPrincipalSeleccionado = ""
+let postreSeleccionado = ""
+let precioTotal = 0
 
 function disponibilidadRestaurantes(){
     for(let i = 0; i < restaurantes.length; i++){
@@ -73,23 +77,52 @@ function disponibilidadRestaurantes(){
 function mostrarRestaurantesDisponibles(){
     if(restaurantesDisponibles.length > 0){
         for(let i = 0; i < restaurantesDisponibles.length; i++){
-            alert("Nombre restaurantes disponibles: ", restaurantesDisponibles[i].nombre)
+            return  i + ". " + restaurantesDisponibles[i].nombre + "\n"
         }
-    }else{
-        alert("No hay restaurantes disponibles en este momento. Por favor, intente en unos minutos.")
-        break;
     }
-    seleccionarRestaurante()
+}
+
+function mostrarEntrada(restauranteSeleccionado){
+    alert("Ver entradas por consola")
+    let i = 0
+    for(i = 0; i < restaurantes[restauranteSeleccionado].entrada.length; i++){
+        console.log(i + ". " + restaurantes[restauranteSeleccionado].entrada[i].nombre + ". Precio: " + restaurantes[restauranteSeleccionado].entrada[i].precio)
+    }
+    entradaSeleccionada = prompt("Seleccione una de las entradas")
+    precioTotal += restaurantes[restauranteSeleccionado].entrada[entradaSeleccionada].precio 
+}
+
+function mostrarMenuPrincipal(restauranteSeleccionado){
+    alert("Ver menu principal por consola")
+    let i = 0
+    for(i = 0; i < restaurantes[restauranteSeleccionado].menuPrincipal.length; i++){
+        console.log(i + ". " + restaurantes[restauranteSeleccionado].menuPrincipal[i].nombre + ". Precio: " + restaurantes[restauranteSeleccionado].menuPrincipal[i].precio)
+    }
+    menuPrincipalSeleccionado = prompt("Seleccione uno de los menues")
+    precioTotal += restaurantes[restauranteSeleccionado].menuPrincipal[menuPrincipalSeleccionado].precio 
+}
+
+function mostrarPostre(restauranteSeleccionado){
+    alert("Ver postres por consola")
+    let i = 0
+    for(i = 0; i < restaurantes[restauranteSeleccionado].postre.length; i++){
+        console.log(i + ". " + restaurantes[restauranteSeleccionado].postre[i].nombre + ". Precio: " + restaurantes[restauranteSeleccionado].postre[i].precio)
+    }
+    postreSeleccionado = prompt("Seleccione uno de los postres")
+    precioTotal += restaurantes[restauranteSeleccionado].postre[postreSeleccionado].precio 
+}
+
+function mostrarTotal(){
+    alert("El precio total de su menu es: $" + precioTotal)
 }
 
 disponibilidadRestaurantes()
 console.log("Restaurantes disponibles", restaurantesDisponibles)
-mostrarRestaurantesDisponibles()
-
-const restauranteSeleccionado = prompt("Seleccionar restaurante: " )
-
-
-
+const restauranteSeleccionado = prompt("Seleccionar restaurante: " + mostrarRestaurantesDisponibles())
+mostrarEntrada(restauranteSeleccionado)
+mostrarMenuPrincipal(restauranteSeleccionado)
+mostrarPostre(restauranteSeleccionado)
+mostrarTotal()
 
 let ubicacionPrincipal = window.pageYOffset;
 
