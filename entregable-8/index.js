@@ -56,7 +56,6 @@ function listarClientesIngresados(){
 
     const datos = JSON.parse(localStorage.getItem("Clientes"))
     const nodoParaLista = document.getElementById("listadoClientes")
-    console.log(datos)
     for(let i = 0; i < datos.length; i++){
 
         const plantilla = `<li> 
