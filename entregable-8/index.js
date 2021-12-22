@@ -33,32 +33,32 @@ let menuesRestaurante = [new Menu(1, "Rabas", "Langosta Americana", "Pie de lim�
                         new Menu(2, "Lasaña bolognesa", "Pollo al ajillo", "Soufflé de chocolate", 1200, "Carne"),
                         new Menu(3, "Pastel de berenjena", "Risotto de vegetales con calabaza", "Frutillas rellenas", 1100, "Vegetariano")]
 
-let comensal = new Cliente("", "", "", new Menu(0, "", "", "", 0, ""))
-
 let tipoMenuIngresado = 0
-
 const cantidadClientes = parseInt(prompt("Ingrese la cantidad de comensales (maximo 5 por mesa): "))
-const clientes = []
+let clientes = []
 
 function guardarComensales(){
-    for(let i= 0; i < cantidadClientes; i++){
-        comensal.nombre = prompt("Ingrese el nombre: ")
-        comensal.apellido = prompt("Ingrese el apellido: ")
-        comensal.dni = parseInt(prompt("Ingrese el DNI: "))
-        tipoMenuIngresado = parseInt(prompt("Ingresar el tipo de menu: (opciones disponibles) \n" + "1. Pescado \n 2. Carne \n 3. Vegetariano"))
-        comensal.menu = traerMenu(tipoMenuIngresado)
-        clientes.push(comensal)
-        localStorage.setItem("Clientes", JSON.stringify(clientes))
+    if(cantidadClientes > 5){
+        alert("Supera la cantidad de personas por mesa")
+    }else{
+        for(let i= 0; i < cantidadClientes; i++){
+            let comensal = new Cliente(prompt("Ingrese el nombre: "), 
+                                        prompt("Ingrese el apellido: "), 
+                                        parseInt(prompt("Ingrese el DNI: ")), 
+                                        traerMenu(parseInt(prompt("Ingresar el tipo de menu: (opciones disponibles) \n" + "1. Pescado \n 2. Carne \n 3. Vegetariano"))) )
+            clientes.push(comensal)
+            localStorage.setItem("Clientes", JSON.stringify(clientes))
+        }
     }
 }
 
-const datos = JSON.parse(localStorage.getItem("Clientes"))
-
 function listarClientesIngresados(){
 
+    const datos = JSON.parse(localStorage.getItem("Clientes"))
     const nodoParaLista = document.getElementById("listadoClientes")
     console.log(datos)
     for(let i = 0; i < datos.length; i++){
+
         const plantilla = `<li> 
                     <p>${datos[i].nombre}, ${datos[i].apellido} DNI: ${datos[i].dni}</p>                    
                     <p>Menú elegido:</p>
@@ -73,7 +73,8 @@ function listarClientesIngresados(){
 
 function mostrarTotalClientes(){
     let totales = document.getElementById("totalClientes")
-    totalesActualizado = `Total clientes: ${datos.length}`
+    console.log(totales)
+    totalesActualizado = `Total clientes: ${JSON.parse(localStorage.getItem("Clientes")).length}`
     totales.replaceWith(totalesActualizado)
 }
 
