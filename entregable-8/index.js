@@ -72,7 +72,6 @@ function listarClientesIngresados(){
 
 function mostrarTotalClientes(){
     let totales = document.getElementById("totalClientes")
-    console.log(totales)
     totalesActualizado = `Total clientes: ${JSON.parse(localStorage.getItem("Clientes")).length}`
     totales.replaceWith(totalesActualizado)
 }
