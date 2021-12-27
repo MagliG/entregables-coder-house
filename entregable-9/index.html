@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Incorporar Eventos</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <form>
+      <h1>Reservas restaurante Francisca del Fuego</h1>
+      <h3>Menú</h3>
+      <ul>
+        <li>1. Pizza Margherita.</li>
+        <li>2. Pizza Panceta & Huevo.</li>
+        <li>3. Pizza Funghi.</li>
+      </ul>
+      <div class="formcontainer" id="personas">
+        <div class="container">
+          <label><strong>Ingrese su nombre:</strong></label>
+          <input type="text" id="nombreCliente" />
+          <label><strong>Ingrese el número de menú:</strong></label>
+          <input type="number" id="menu" />
+          <label><strong>Ingrese la cantidad de personas:</strong></label>
+          <input type="number" id="cantPersonas" />
+        </div>
+      </div>
+      <button id="cargarReserva"><strong>Cargar reserva</strong></button>
+      <h3>Reservas:</h3>
+      <div id="reservas"></div>
+    </form>
+    <script src="index.js">
+      definirEventos()
+    </script>
+  </body>
+</html>
+
+<script language="javascript">
+  definirEventos()
+</script>
