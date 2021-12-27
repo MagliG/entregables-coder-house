@@ -10,13 +10,14 @@ class Reserva {
       localStorage.setItem(this.nombreCliente, JSON.stringify(this))
       return 'Reserva cargada'
     } else {
-      return 'ERROR: No se pudo crear el usuario'
+      return 'ERROR'
     }
   }
 }
 
 function definirEventos () {
   function mostrarReservas () {
+    let date = new Date()
     const listaReservas = document.createElement('ul')
     const reservas = document.getElementById('reservas')
     for (let i = 0; i < localStorage.length; i++) {
@@ -26,6 +27,7 @@ function definirEventos () {
       <p>Menú: ${reserva.menu}</p>
       <p>Cantidad de personas: ${reserva.cantidadPersonas}</p>
       <hr>`
+      listaReservas.innerHTML += 'Hora de actualización: ' + date
       let itemReserva = document.createElement('li')
       itemReserva.innerHTML = plantilla
       listaReservas.appendChild(itemReserva)
@@ -40,7 +42,6 @@ function definirEventos () {
       document.getElementById('menu').value,
       document.getElementById('cantPersonas').value
     )
-    console.log(nuevaReserva)
     const respuesta = nuevaReserva.cargarReserva()
     if (respuesta === 'Reserva cargada') {
       alert('Reserva realizada con exito')
