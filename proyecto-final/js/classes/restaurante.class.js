@@ -1,17 +1,15 @@
 class Restaurante{
-    constructor(id, nombre, ubicacion, tipoRestaurante ,totalMesas, mesasDisponibles, entrada, menuPrincipal, postre){
+    constructor(id, nombre, ubicacion, tipoRestaurante ,capacidad, disponibilidad, costoReserva){
         this.id = id,
         this.nombre = nombre,
         this.ubicacion = ubicacion,
         this.tipoRestaurante = tipoRestaurante,
-        this.totalMesas = totalMesas,
-        this.mesasDisponibles = mesasDisponibles,
-        this.entrada = entrada,
-        this.menuPrincipal = menuPrincipal,
-        this.postre = postre
+        this.capacidad = capacidad,
+        this.disponibilidad = disponibilidad,
+        this.costoReserva = costoReserva
     }
 
-    tieneMesasDisponibles(){
-        return (this.mesasDisponibles > 0)
+    tieneDisponibilidad(disponibilidadSolicitada){
+        return (this.disponibilidad > disponibilidadSolicitada)
     }
 }

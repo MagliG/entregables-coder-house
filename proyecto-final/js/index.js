@@ -1,47 +1,133 @@
-function onInit () {
-  console.log(restaurantes)
-  listarRestaurantes()
+let nombreCliente = ""
+let costoFinal = 0
+let valoresReserva = 0
+
+function traerRestaurante(idRestaurante){
+  const restauranteEncontrado = restaurantes.find(element => element.id === idRestaurante)
+  return restauranteEncontrado
 }
 
-function listarRestaurantes () {
-  const nodoRestaurantes = document.getElementById('restaurantes')
-  let contenido = ''
-  for (restaurante of restaurantes) {
-    contenido += `<div class="elemento" data-aos="zoom-in-down">
-                    <i class="fas fa-utensils"></i>
-                    <h3>${restaurante.nombre}</h3>
-                    <p>${restaurante.ubicacion}</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus maxime eius quo
-                    consequuntur magni. Quis voluptate repudiandae soluta quod mollitia!</p>
-                    <a onclick="listarEntrada(${restaurante.id})" href="#menu">Reservar</a>
-                    </div>`
+function listarRestaurantes (cantidadPersonas) {
+  const restaurantesDisponibles = []
+  for(restaurante of restaurantes){
+    let restauranteClase = new Restaurante(restaurante.id, restaurante.nombre, restaurante.ubicacion, restaurante.tipoRestaurante, restaurante.capacidad, restaurante.disponibilidad, restaurante.costoReserva)
+    if(restauranteClase.tieneDisponibilidad(cantidadPersonas)){
+      restaurantesDisponibles.push(restauranteClase)
+    }
   }
-  nodoRestaurantes.innerHTML += contenido
+    const nodoRestaurantes = document.getElementById('restaurantes')
+    if(restaurantesDisponibles.length == 0){
+      let plantilla = `<h3 style="text-align:center; color: #1f1f1f; "><i>No hay restaurantes disponibles para la cantidad de personas ingresada. Por favor reincia la página e intenta nuevamente.</i></h3>`
+      nodoRestaurantes.innerHTML+=plantilla
+    }
+    let contenido = ''
+    for (restaurante of restaurantesDisponibles) {
+      contenido += `<div class="elemento" data-aos="zoom-in-down">
+                      <i class="fas fa-utensils"></i>
+                      <h3>${restaurante.nombre}</h3>
+                      <p>${restaurante.ubicacion}</p>
+                      <p>Costo de reserva: <b>$ ${restaurante.costoReserva}</b></p>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus maxime eius quo
+                      consequuntur magni. Quis voluptate repudiandae soluta quod mollitia!</p>
+                      <a onclick="seleccionarRestaurante(${restaurante.id})" href="#menu">Seleccionar</a>
+                      </div>`
+    }
+    nodoRestaurantes.innerHTML += contenido
 }
 
-function mostrarEntradas (idMenu) {
+const comprobarDisponibilidad = document.getElementById('comprobarDisponibilidad')
+comprobarDisponibilidad.onclick = () => {
+  const nodoRestaurantes = document.querySelector('.restaurante')
+  nodoRestaurantes.classList.add('activo')
+  nuevaReserva = new Reserva(document.getElementById("nombreReserva").value,
+                              document.getElementById("cantPersonas").value,
+                              document.getElementById("date").value,
+                              document.getElementById("time").value,
+                              new Restaurante(),
+                              0)
+  nombreCliente = document.getElementById("nombreReserva").value
+  let reservaCliente = new Reserva()
+  reservaCliente = nuevaReserva 
+  const resultado = reservaCliente.registrarReserva()
+  if(resultado !== "ERROR"){
+    listarRestaurantes(reservaCliente.cantidadPersonas)
+  }else{
+    // Se muestra mensaje indicando que hubo un error al registrar el primer paso de la reserva
+  }
+}
+
+function pintarElementos(){
+  const nodoMenu = document.getElementById('menu')
+  nodoMenu.classList.add('activo')
+  const tabEntradas = document.getElementById('boton-entradas')
+  tabEntradas.classList.add('activo')
+  const infoEntradas = document.getElementById('entradas')
+  infoEntradas.classList.add('activo')
+}
+
+function seleccionarRestaurante(idRestaurante){
+  pintarElementos()
+  restauranteSeleccionado = traerRestaurante(idRestaurante)
+  const reserva = JSON.parse(localStorage.getItem(nombreCliente))
+  reserva.restaurante = restauranteSeleccionado
+  localStorage.setItem(reserva.nombre, JSON.stringify(reserva))
+  mostrarEntradas(idRestaurante)
+  mostrarPlatosPrincipales(idRestaurante)
+  mostrarPostres(idRestaurante)
+}
+
+function agregarMenu(menuPrecio){
+  valoresReserva+=menuPrecio
+  const seccionReserva = document.getElementById('reserva')
+  seccionReserva.classList.add('activo')
+}
+
+function calcularTotalValorReserva(){
+  const reserva = JSON.parse(localStorage.getItem(nombreCliente))
+  const costoTotal = valoresReserva + reserva.restaurante.costoReserva
+  costoFinal = costoTotal
+  let plantillaCostoTotal = `<div class="infoReserva">
+                            <p style="color: #1f1f1f; text-align:center">El costo total de su reserva es: $ ${costoTotal}</p>
+                            </div>`
+  const mostrarTotal = document.getElementById('mostrarTotal')
+  mostrarTotal.innerHTML+=plantillaCostoTotal
+}
+
+function confirmarReserva(){
+  const reservaFinal = JSON.parse(localStorage.getItem(nombreCliente))
+  reservaFinal.costoReserva = costoFinal
+  localStorage.setItem(nombreCliente, JSON.stringify(reservaFinal))
+  const mensajeExito = document.getElementById('confirmacionReserva')
+  const plantillaExito = `<div class="infoReserva">
+                          <p style="color: #1f1f1f; text-align:center">Reserva realizada con éxito!!!</p>
+                          </div>`
+  mensajeExito.innerHTML+= plantillaExito
+}
+
+function mostrarEntradas (idRestaurante) {
   const nodoMenu = document.getElementById('entradas')
   const entradasRestaurante = platos.filter(
-    element => element.idRestaurante == idMenu && element.tipo === 'Entrada'
+    element => element.idRestaurante == idRestaurante && element.tipo === 'Entrada'
   )
   console.log(entradasRestaurante)
-  let contenido = ''
+  let contenido = ``
   for (entrada of entradasRestaurante) {
     contenido += `<div class="elemento" data-aos="zoom-in-down">
                     <i class="fas fa-calendar-day"></i>
                     <h3>${entrada.nombre}</h3>
                     <p>${entrada.descripcion}</p>
-                    <a href="#">Agregar ---></a>
+                    <p>Precio: $ <b>${entrada.precio}</b></p>
+                    <a onclick="agregarMenu(${entrada.precio})">Agregar ---></a>
                     </div>`
   }
   nodoMenu.innerHTML += contenido
 }
 
-function mostrarPlatosPrincipales (idMenu) {
+function mostrarPlatosPrincipales (idRestaurante) {
   const nodoMenu = document.getElementById('platoPrincipal')
   const platosRestaurante = platos.filter(
     element =>
-      element.idRestaurante == idMenu && element.tipo === 'Plato principal'
+      element.idRestaurante == idRestaurante && element.tipo === 'Plato principal'
   )
   console.log(platosRestaurante)
   let contenido = ''
@@ -50,16 +136,17 @@ function mostrarPlatosPrincipales (idMenu) {
                     <i class="fas fa-calendar-day"></i>
                     <h3>${plato.nombre}</h3>
                     <p>${plato.descripcion}</p>
-                    <a href="#">Agregar ---></a>
+                    <p>Precio: $ <b>${plato.precio}</b></p>
+                    <a onclick="agregarMenu(${plato.precio})">Agregar ---></a>
                     </div>`
   }
   nodoMenu.innerHTML += contenido
 }
 
-function mostrarPostres (idMenu) {
+function mostrarPostres (idRestaurante) {
   const nodoMenu = document.getElementById('postres')
   const postresRestaurante = platos.filter(
-    element => element.idRestaurante == idMenu && element.tipo === 'Postre'
+    element => element.idRestaurante == idRestaurante && element.tipo === 'Postre'
   )
   console.log(postresRestaurante)
   let contenido = ''
@@ -68,20 +155,13 @@ function mostrarPostres (idMenu) {
                       <i class="fas fa-calendar-day"></i>
                       <h3>${postre.nombre}</h3>
                       <p>${postre.descripcion}</p>
-                      <a href="#">Agregar ---></a>
+                      <p>Precio: $ <b>${postre.precio}</b></p>
+                      <a onclick="agregarMenu(${postre.precio})">Agregar ---></a>
                       </div>`
   }
   nodoMenu.innerHTML += contenido
 }
 
-// Para cada botón hago un evento onclick que cuando lo apreto llama a la funcion mostrarPlato,
-// mostrarEntrada, mostrarPostre.
-// Para saber el id del Restaurante previamente lo guardo en el localstorage.
-// Necesito ver en dónde el usuario coloca la cantidad de comensales para luego
-// poder limitar la cantidad de menues elegidos, es decir, 2 comensales serían
-// 2 postres, 2 platos principales, 2 entradas y no se debería poder agregar más.
-// Cada vez que hago click en uno de los botones de los tab hay que hacer un
-// display: none del resto de los div que se abren con
 let ubicacionPrincipal = window.pageYOffset
 
 AOS.init()
