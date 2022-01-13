@@ -130,7 +130,6 @@ function confirmarReserva(){
 }
 
 function mostrarEntradas (idRestaurante) {
-  const nodoMenu = document.getElementById('entradas')
   const entradasRestaurante = platos.filter(
     element => element.idRestaurante == idRestaurante && element.tipo === 'Entrada'
   )
@@ -146,11 +145,10 @@ function mostrarEntradas (idRestaurante) {
                   </div>`
   // contenido -> falta implementar boton para agregar menu
   }
-  nodoMenu.innerHTML += contenido
+  $('#entradas').append(contenido)
 }
 
 function mostrarPlatosPrincipales (idRestaurante) {
-  const nodoMenu = document.getElementById('platoPrincipal')
   const platosRestaurante = platos.filter(
     element =>
       element.idRestaurante == idRestaurante && element.tipo === 'Plato principal'
@@ -167,11 +165,10 @@ function mostrarPlatosPrincipales (idRestaurante) {
                   </div>`
   // contenido -> falta implementar boton para agregar menu
   }
-  nodoMenu.innerHTML += contenido
+  $('#platoPrincipal').append(contenido)
 }
 
 function mostrarPostres (idRestaurante) {
-  const nodoMenu = document.getElementById('postres')
   const postresRestaurante = platos.filter(
     element => element.idRestaurante == idRestaurante && element.tipo === 'Postre'
   )
@@ -187,7 +184,7 @@ function mostrarPostres (idRestaurante) {
                   </div>`
   // contenido -> falta implementar boton para agregar menu
   }
-  nodoMenu.innerHTML += contenido
+  $('#postres').append(contenido)
 }
 
 // let ubicacionPrincipal = window.pageYOffset
