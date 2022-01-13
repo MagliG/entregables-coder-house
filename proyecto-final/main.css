@@ -613,7 +613,7 @@ footer {
   }
 }
 
-.course {
+.card-restaurante {
 	background-color: #1f1f1f;
 	border-radius: 20px;
   box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
@@ -624,33 +624,33 @@ footer {
 	width: 700px;
 }
 
-.course h6 {
+.card-restaurante h6 {
 	opacity: 0.6;
 	margin: 0;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
 
-.course h2 {
+.card-restaurante h2 {
 	letter-spacing: 1px;
 	margin: 10px 0;
 }
 
-.course-preview {
+.card-restaurante-img {
 	background-color: #54FFC6;
 	color: #fff;
 	/* padding: 30px; */
 	max-width: 250px;
 }
 
-.course-preview img{
+.card-restaurante-img img{
   object-fit: cover;
   width: 100%;
   max-width: 370px;
   height: 20vw;
 }
 
-.course-info {
+.card-restaurante-info {
 	padding: 30px;
 	position: relative;
 	width: 100%;
@@ -671,7 +671,7 @@ footer {
   text-decoration: underline;
 }
 
-.progress-container {
+.info-valor-reserva {
 	position: absolute;
 	top: 20px;
 	right: 20px;
@@ -679,7 +679,7 @@ footer {
 	width: 150px;
 }
 
-.progress-text {
+.info-valor-reserva-texto {
   color: #fff;
 	font-size: 14px;
 	opacity: 0.8;
@@ -707,7 +707,7 @@ footer {
   opacity: 1;
 }
 
-.card {
+.card-menu {
   background-color: #fff;
   max-width: 340px;
   display: flex;
@@ -716,7 +716,7 @@ footer {
   border-radius: 20px;
   box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
 }
-.card .banner {
+.card-menu .banner {
   background-image: url("./assets/img/plato-gral.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -728,7 +728,7 @@ footer {
   box-sizing: border-box;
 }
 
-.card .menu {
+.card-menu .menu {
   width: 100%;
   height: 5.5rem;
   padding: 1rem;
@@ -740,7 +740,7 @@ footer {
   background-color: transparent;
 }
 
-.card h2.name {
+.card-menu h2.name {
   letter-spacing: 1px;
   color: #1f1f1f;
   text-align: left;
@@ -748,7 +748,7 @@ footer {
   margin: 0;
 }
 
-.card h6 {
+.card-menu h6 {
 	opacity: 0.6;
 	margin: 0;
 	letter-spacing: 1px;

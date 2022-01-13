@@ -32,14 +32,13 @@ function listarRestaurantes (cantidadPersonas) {
     }
     let contenido = ''
     for (restaurante of restaurantesDisponibles) {
-      contenido += `<div class="courses-container">
-                      <div class="course">
-                        <div class="course-preview">
+      contenido += `  <div class="card-restaurante">
+                        <div class="card-restaurante-img">
                           <img src="${restaurante.imagen}" alt="${restaurante.nombre}">
                         </div>
-                        <div class="course-info">
-                          <div class="progress-container">
-                              <span class="progress-text">
+                        <div class="card-restaurante-info">
+                          <div class="info-valor-reserva">
+                              <span class="info-valor-reserva-texto">
                                 Valor reserva: $${restaurante.costoReserva}
                               </span>
                             </div>
@@ -52,7 +51,7 @@ function listarRestaurantes (cantidadPersonas) {
                             <a class="button-card-restaurante" onclick="seleccionarRestaurante(${restaurante.id})" href="#entradas">Ordenar</a>
                           </div>
                         </div>
-                      </div>`
+                      `
     }
     $('#restaurantes').append(contenido)
 }
@@ -138,7 +137,7 @@ function mostrarEntradas (idRestaurante) {
   console.log(entradasRestaurante)
   let contenido = ``
   for (entrada of entradasRestaurante) {
-    contenido += `<div class="card">
+    contenido += `<div class="card-menu">
                     <div class="banner">
                     </div>
                     <h2 class="name">${entrada.nombre}</h2>
@@ -159,7 +158,7 @@ function mostrarPlatosPrincipales (idRestaurante) {
   console.log(platosRestaurante)
   let contenido = ''
   for (plato of platosRestaurante) {
-    contenido += `<div class="card">
+    contenido += `<div class="card-menu">
                     <div class="banner">
                     </div>
                     <h2 class="name">${plato.nombre}</h2>
@@ -179,7 +178,7 @@ function mostrarPostres (idRestaurante) {
   console.log(postresRestaurante)
   let contenido = ''
   for (postre of postresRestaurante) {
-    contenido += `<div class="card">
+    contenido += `<div class="card-menu">
                     <div class="banner">
                     </div>
                     <h2 class="name">${postre.nombre}</h2>
