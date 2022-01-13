@@ -7,6 +7,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  place-items: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,20 +16,54 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contenedor {
-  width: 90%;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 100%;
   margin: auto;
   overflow: hidden;
   /* background-color: #b09e80; */
 }
 
+.fondo-header{
+  background-image: url(./assets/img/background-2.jpg);
+	text-align: center;
+	/* background-position: center center; */
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+  animation: fadeIn ease .5s;
+}
 
-.contenedor-1 {
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+.fondo-header::before{
+  content:'';
+	position: absolute;
+  top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.3);
+}
+
+.contenedor-nav{
   width: 90%;
   max-width: 1000px;
   margin: auto;
   overflow: hidden;
+  animation: fadeIn .5s;
+}
+
+
+.contenedor-1 {
+  width: 90%;
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
   padding: 60px 0;
+  animation: fadeIn .5s;
 }
 
 h1 {
@@ -105,29 +140,25 @@ nav {
 .contenido-header {
   width: 100%;
   height: 600px;
-  display: flex;
-  justify-content: space-between;
+  display: none;
+  justify-content: space-evenly;
   align-items: center;
+  flex-wrap: nowrap;
+  /* flex-direction: column; */
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
-.contenido-header>img {
-  width: 550px;
-  animation: ease-in animat .8s;
+.contenido-header.activo{
+  display: flex;
 }
-
-@keyframes animat {
-  0% {
-    transform: scale(0);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
 
 .textos-header {
   margin: 0 0 0 30px;
+  position: relative;
+  animation: fadeIn .5s;
 }
 
 .contenido-header p {
@@ -136,21 +167,29 @@ nav {
   color: #fff;
 }
 
-
-.contenido-header a {
-  margin: 28px 0 0 0;
-  width: 130px;
+.button-header{
+  margin: 36px 20px 0 20px;
+  width: 190px;
   display: inline-block;
   background: #54FFC6;
   text-align: center;
   color: #1f1f1f;
-  padding: 12px 0;
+  padding: 17px 0;
   text-decoration: none;
   font-weight: 400;
   text-transform: uppercase;
   font-size: 14px;
-  border-radius: 20px;
-  box-shadow: 0 6px 22px rgba(57, 248, 199, .46);
+  border-radius: 24px;
+  border: 1px solid #54FFC6;
+  cursor: pointer;
+  opacity: .9;
+  animation: fadeIn .5s;
+  /* box-shadow: 0 2px 6px rgba(57, 248, 199, .46); */
+}
+
+.button-header:hover{
+  opacity: 1;
+
 }
 
 .titulo-light {
@@ -162,7 +201,6 @@ nav {
   font-size: 50px;
   color: #fff;
 }
-
 
 .restaurante {
   background: #54FFC6;
@@ -200,6 +238,8 @@ nav {
   border-radius: 20px;
   color: white;
   box-shadow: 0 6px 22px #1f1f1f;
+  position: relative;
+  animation: fadeIn .5s;
 }
 
 .form-register h4 {
@@ -256,8 +296,12 @@ nav {
 .contenedor-restaurante {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 60px;
+  margin-top: 30px;
   justify-content: space-around;
+  /* grid-template-columns: repeat(2, 1fr); */
+  /* grid-gap: 5px; */
+  /* grid-auto-rows: minmax(100px, auto); */
+  
 }
 
 .contenedor-menu {
@@ -567,4 +611,148 @@ footer {
     width: 95%;
     margin-bottom: 40px;
   }
+}
+
+.course {
+	background-color: #1f1f1f;
+	border-radius: 20px;
+  box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
+	display: flex;
+	max-width: 100%;
+	margin: 20px;
+	overflow: hidden;
+	width: 700px;
+}
+
+.course h6 {
+	opacity: 0.6;
+	margin: 0;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.course h2 {
+	letter-spacing: 1px;
+	margin: 10px 0;
+}
+
+.course-preview {
+	background-color: #54FFC6;
+	color: #fff;
+	/* padding: 30px; */
+	max-width: 250px;
+}
+
+.course-preview img{
+  object-fit: cover;
+  width: 100%;
+  max-width: 370px;
+  height: 20vw;
+}
+
+.course-info {
+	padding: 30px;
+	position: relative;
+	width: 100%;
+}
+
+.button-ver-menu {
+	color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	opacity: 0.6;
+	margin-top: 30px;
+	text-decoration: none;
+  cursor: pointer;
+}
+
+.button-ver-menu:hover{
+  color: #54FFC6;
+  text-decoration: underline;
+}
+
+.progress-container {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	text-align: right;
+	width: 150px;
+}
+
+.progress-text {
+  color: #fff;
+	font-size: 14px;
+	opacity: 0.8;
+	letter-spacing: 1px;
+}
+
+.button-card-restaurante {
+	background-color: #54FFC6;
+  opacity: .9;
+	border: 0;
+	border-radius: 20px;
+	/* box-shadow: 0 10px 10px rgba(57, 248, 199, .0); */
+	color: #1f1f1f;
+	font-size: 14px;
+	padding: 12px 25px;
+	position: absolute;
+  text-decoration: none;
+	bottom: 20px;
+	right: 20px;
+	letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.button-card-restaurante:hover{
+  opacity: 1;
+}
+
+.card {
+  background-color: #fff;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
+}
+.card .banner {
+  background-image: url("./assets/img/plato-gral.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 11rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.card .menu {
+  width: 100%;
+  height: 5.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.card h2.name {
+  letter-spacing: 1px;
+  color: #1f1f1f;
+  text-align: left;
+  padding: 1rem 1rem 0.5rem;
+  margin: 0;
+}
+
+.card h6 {
+	opacity: 0.6;
+	margin: 0;
+	letter-spacing: 1px;
+  padding: 1rem 1rem 0.5rem;
+	text-transform: uppercase;
+  color: #1f1f1f;
 }

@@ -131,4 +131,67 @@ const platos = [
     descripcion: '',
     precio:  560
   },
+  {
+    idRestaurante: 3,
+    tipo: 'Entrada',
+    nombre: '',
+    descripcion: '',
+    precio:  560
+  },
+  {
+    idRestaurante: 3,
+    tipo: 'Entrada',
+    nombre: '',
+    descripcion: '',
+    precio:  560
+  },
+  {
+    idRestaurante: 3,
+    tipo: 'Entrada',
+    nombre: '',
+    descripcion: '',
+    precio:  560
+  },
+  {
+    idRestaurante: 3,
+    tipo: 'Plato principal',
+    nombre: '',
+    descripcion: '',
+    precio:  560
+  },
+  {
+    idRestaurante: 3,
+    tipo: 'Plato principal',
+    nombre: '',
+    descripcion: '',
+    precio:  560
+  },
+  {
+    idRestaurante: 3,
+    tipo: 'Plato principal',
+    nombre: '',
+    descripcion: '',
+    precio:  560
+  },
+  {
+    idRestaurante: 3,
+    tipo: 'Postre',
+    nombre: '',
+    descripcion: '',
+    precio:  560
+  },
+  {
+    idRestaurante: 3,
+    tipo: 'Postre',
+    nombre: '',
+    descripcion: '',
+    precio:  560
+  },
+  {
+    idRestaurante: 3,
+    tipo: 'Postre',
+    nombre: '',
+    descripcion: '',
+    precio:  560
+  },
 ]
