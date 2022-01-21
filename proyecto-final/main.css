@@ -706,6 +706,12 @@ footer {
 .button-card-restaurante:hover{
   opacity: 1;
 }
+
+.button-card-restaurante.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.2;
+}
 /* 
 .card-menu {
   background-color: #fff;
@@ -862,4 +868,91 @@ footer {
 
 .button-card-menu:hover{
   opacity: 1;
+}
+
+/* .four.columns{
+    width: 30.6666666667%;
+}
+
+.columns {
+    margin-left: 4%; 
+}
+
+.two.columns{ 
+  width: 13.3333333333%; 
+} */
+
+.u-pull-right {
+  float: right; 
+}
+
+/* .submenu {
+  position: relative;
+} */
+.submenu #carrito{
+  display: none;
+}
+.submenu:hover #carrito{
+  display: block;
+  color: white;
+  position: absolute;
+  right: 0;
+  /* top: 80%;
+  right: 15%; */
+  z-index: 1;
+  background: #fff;
+  padding: 20px;
+  width: 400px;
+  border-radius: 20px;
+  height: auto;
+  margin-right: 150px;
+}
+
+.vacio {
+  padding: 10px;
+  background-color: #1f1f1f;
+  text-align: center;
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.borrar-platillo {
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #1f1f1f;
+  font-weight: bold;
+}
+
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.button {
+  padding: 8px;
+  border-radius: 20px;
+  background-color: #1f1f1f;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+}
+
+th{
+  color: #1f1f1f;
+}
+
+td{
+  color: #1f1f1f;
+}
+
+.badge{
+  background-color:#54FFC6;
+  color: #1f1f1f;
+  display: inline-block;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 14px;
 }

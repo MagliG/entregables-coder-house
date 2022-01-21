@@ -21,13 +21,29 @@
             <img src="./assets/img/logo-dark.png" alt="Mi Restaurante" />
           </div>
           <div class="enlaces-header">
-            <!-- <a href="#restaurantes">
-              <i class="fas fa-concierge-bell"></i> Reservar</a
-            > -->
-            <!-- <a href="#">Contacto</a> -->
           </div>
-          <div class="enlaces-header">
-            <a href=""><i class="fas fa-cash-register" style="font-size: 30px;"></i></a>
+          <div class="enlaces-header submenu">
+            <a href=""><i class="fas fa-cash-register" style="font-size: 30px;"></i>
+              <span id="cart_menu_num" data-action="cart-can" class="badge">0</span>
+            </a>
+            <div id="carrito">
+              <!-- <p class="vacio">Reserva vacía</p> -->
+              <table id="lista-carrito" class="u-full-width">
+                <thead>
+                  <tr>
+                    <th>Plato</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- SE INSERTAN LOS PLATOS AL CARRO -->
+                </tbody>
+              </table>
+              <hr>
+              <br>
+              <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar reserva</a>
+              <a href="#" id="confirmar-reserva" class="button u-full-width">Confirmar reserva</a>
+            </div>
           </div>
         </section>
       </nav>
@@ -38,7 +54,6 @@
             <p>Suspendisse blandit nisi velit, quis mollis ligula dapibus et.</p>
             <div class="">
               <a class="button-header" href="#seccionRestaurantes" id="verMenuOrdenar">Ver menú y ordenar</a>
-              <!-- <a class="button-header" id="reservarMesa">Reservar mesa</a> -->
             </div>
           </section>
           <section class="contenido-header" id="formMesas">
@@ -57,6 +72,7 @@
         </section>
       </div>
     </header>
+    
     <section class="restaurante" id="seccionRestaurantes">
       <div class="contenedor-1">
         <h3 class="titulo-light">Restaurantes disponibles</h3>

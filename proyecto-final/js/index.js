@@ -4,6 +4,8 @@ let valoresReserva = 0
 const restaurantes = []
 const platos = []
 let restauranteSeleccionado
+const listaPlatillos = document.querySelector("#lista-carrito tbody");
+const valorBadge = 10
 
 $("#reservarMesa").click(function (){
   $("#formMesas").addClass("activo")
@@ -87,7 +89,11 @@ function pintarElementos(){
 
 function seleccionarRestaurante(idRestaurante){
   crearReserva()
-  $("#seccionRestaurantes").fadeOut()
+  const buttonsRestaurante = document.querySelectorAll('.button-card-restaurante')
+  buttonsRestaurante.forEach((button, i) =>{
+    buttonsRestaurante[i].classList.add('disabled')
+  })
+  // $("#seccionRestaurantes").fadeOut()
   pintarElementos()
   restauranteSeleccionado = traerRestaurante(idRestaurante)
   agregarRestauranteAlStorage(restauranteSeleccionado)
@@ -100,7 +106,7 @@ function seleccionarRestaurante(idRestaurante){
 }
 
 function crearReserva(){
-  let reserva = new Reserva()
+  let reserva = new Reserva("", "", "", "", "", "", [])
   localStorage.setItem('reserva', JSON.stringify(reserva))
 }
 
@@ -109,6 +115,7 @@ function agregarRestauranteAlStorage(restaurante){
   reserva.restaurante = restaurante
   localStorage.setItem('reserva', JSON.stringify(reserva))
 }
+
 
 // function calcularTotalValorReserva(){
 //   const reserva = JSON.parse(localStorage.getItem(nombreCliente))
@@ -209,7 +216,7 @@ function mostrarPostres (idRestaurante) {
                       <h2>${postre.nombre}</h2>
                       <br>
                       <h6>${postre.descripcion}</h6>
-                      <a class="button-card-menu" onclick="agregarMenu(${postre.id})" href="#">Agregar</a>
+                      <a class="button-card-menu" onclick="agregarMenu(${postre.id})" href="#entradas">Agregar</a>
                     </div>
                   </div>`
   // contenido -> falta implementar boton para agregar menu
@@ -221,15 +228,23 @@ function mostrarPostres (idRestaurante) {
 
 function agregarMenu(id){
   const plato = platos.find(element => element.id === id)
-  console.log(plato)
   insertarCarrito(plato)
 }
 
 function insertarCarrito(plato){
   // Inserto el plato en el carrito
+  const row = document.createElement('tr')
+  row.innerHTML = `<td>${plato.nombre}</td>
+                   <td>${plato.precio}</td>
+                   <td>
+                    <a href="#" class="borrar-platillo" onclick="borrarPlatillo(${plato.id})"><i class="fas fa-trash-alt" style="font-size: 15px;"></i></a>
+                   </td>
+                   <br>`
 
+  listaPlatillos.appendChild(row);
   guardarPlatoEnElStorage(plato)
 }
+
 
 function guardarPlatoEnElStorage(plato){
   let reserva
@@ -246,6 +261,24 @@ function obtenerReservaDelStorage(){
     reserva = JSON.parse(localStorage.getItem('reserva'))
   }
   return reserva
+}
+
+function borrarPlatillo(id){
+  let reserva = obtenerReservaDelStorage()
+  reserva.platos.forEach(function(plato, index){
+    if(plato.id === id) {
+        reserva.platos.splice(index, 1);
+    }
+  })
+  localStorage.setItem('reserva', JSON.stringify(reserva));
+}
+
+function vaciarLocalStorage() {
+  localStorage.clear();
+  const buttonsRestaurante = document.querySelectorAll('.button-card-restaurante')
+  buttonsRestaurante.forEach((button, i) =>{
+    buttonsRestaurante[i].classList.remove('.disabled')
+  })
 }
 
 // let ubicacionPrincipal = window.pageYOffset
