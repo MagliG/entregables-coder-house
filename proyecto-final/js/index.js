@@ -1,37 +1,35 @@
 let nombreCliente = ""
 let costoFinal = 0
 let valoresReserva = 0
+const restaurantes = []
+const platos = []
+let restauranteSeleccionado
 
 $("#reservarMesa").click(function (){
   $("#formMesas").addClass("activo")
 })
 
-$("#verMenuOrdenar").click( function (){
-  listarRestaurantes(0)
+$.get("./js/data/platos.json", function(data){
+  for(let i = 0; i < data.length; i++){
+    platos.push(data[i])
+  }
 })
+
+// $("#verMenuOrdenar").click( function (){
+//   listarRestaurantes(0)
+// })
 
 function traerRestaurante(idRestaurante){
   const restauranteEncontrado = restaurantes.find(element => element.id === idRestaurante)
   return restauranteEncontrado
 }
 
-function listarRestaurantes (cantidadPersonas) {
-  const seccionRestaurantes = document.getElementById('seccionRestaurantes')
-  seccionRestaurantes.classList.add('activo')
-  const restaurantesDisponibles = []
-  for(restaurante of restaurantes){
-    let restauranteClase = new Restaurante(restaurante.id, restaurante.nombre, restaurante.ubicacion, restaurante.tipoRestaurante, restaurante.descripcion, restaurante.capacidad, restaurante.disponibilidad, restaurante.costoReserva, restaurante.imagen, restaurante.menuPDF)
-    if(restauranteClase.tieneDisponibilidad(cantidadPersonas)){
-      restaurantesDisponibles.push(restauranteClase)
-    }
-  }
-    
-    if(restaurantesDisponibles.length == 0){
-      let plantilla = `<h3 style="text-align:center; color: #1f1f1f; "><i>No hay restaurantes disponibles para la cantidad de personas ingresada. Por favor reincia la página e intenta nuevamente.</i></h3>`
-      $('#restaurantes').append(plantilla)
-    }
+$("#verMenuOrdenar").click( function(){
+  $.get("./js/data/restaurantes.json", function(data){
+    $("#seccionRestaurantes").addClass("activo")
     let contenido = ''
-    for (restaurante of restaurantesDisponibles) {
+    for (restaurante of data) {
+      restaurantes.push(restaurante)
       contenido += `  <div class="card-restaurante">
                         <div class="card-restaurante-img">
                           <img src="${restaurante.imagen}" alt="${restaurante.nombre}">
@@ -53,8 +51,9 @@ function listarRestaurantes (cantidadPersonas) {
                         </div>
                       `
     }
-    $('#restaurantes').append(contenido)
-}
+    $("#restaurantes").append(contenido)    
+  })
+})
 
 function abrirMenu(path){
   window.open(path)
@@ -91,6 +90,7 @@ function pintarElementos(){
 }
 
 function seleccionarRestaurante(idRestaurante){
+  $("#seccionRestaurantes").fadeOut()
   pintarElementos()
   restauranteSeleccionado = traerRestaurante(idRestaurante)
   // const reserva = JSON.parse(localStorage.getItem(nombreCliente))
@@ -133,7 +133,6 @@ function mostrarEntradas (idRestaurante) {
   const entradasRestaurante = platos.filter(
     element => element.idRestaurante == idRestaurante && element.tipo === 'Entrada'
   )
-  console.log(entradasRestaurante)
   let contenido = ``
   for (entrada of entradasRestaurante) {
     contenido += `<div class="card-menu">
@@ -142,6 +141,7 @@ function mostrarEntradas (idRestaurante) {
                     <h2 class="name">${entrada.nombre}</h2>
                     <h6>${entrada.descripcion}</h6>
                     <h6><b>Precio: $${entrada.precio}</h6>
+                    <a onclick="agregarAlCarrito(${entrada.id})" href="">Agregar</a>
                   </div>`
   // contenido -> falta implementar boton para agregar menu
   }
@@ -153,7 +153,6 @@ function mostrarPlatosPrincipales (idRestaurante) {
     element =>
       element.idRestaurante == idRestaurante && element.tipo === 'Plato principal'
   )
-  console.log(platosRestaurante)
   let contenido = ''
   for (plato of platosRestaurante) {
     contenido += `<div class="card-menu">
@@ -172,7 +171,6 @@ function mostrarPostres (idRestaurante) {
   const postresRestaurante = platos.filter(
     element => element.idRestaurante == idRestaurante && element.tipo === 'Postre'
   )
-  console.log(postresRestaurante)
   let contenido = ''
   for (postre of postresRestaurante) {
     contenido += `<div class="card-menu">
