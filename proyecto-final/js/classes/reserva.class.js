@@ -1,11 +1,12 @@
 class Reserva{
-    constructor(nombre, cantidadPersonas, fecha, hora, restaurante, costoReserva){
+    constructor(nombre, cantidadPersonas, fecha, hora, restaurante, costoReserva, platos){
         this.nombre = nombre,
         this.cantidadPersonas = cantidadPersonas,
         this.fecha = fecha, 
         this.hora = hora, 
         this.restaurante = restaurante,
-        this.costoReserva = costoReserva
+        this.costoReserva = costoReserva,
+        this.platos = platos
     }
 
     registrarReserva(){

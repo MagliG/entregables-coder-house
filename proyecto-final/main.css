@@ -706,7 +706,7 @@ footer {
 .button-card-restaurante:hover{
   opacity: 1;
 }
-
+/* 
 .card-menu {
   background-color: #fff;
   width: 340px;
@@ -716,8 +716,8 @@ footer {
   overflow: hidden;
   border-radius: 20px;
   box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
-}
-.card-menu .banner {
+} */
+/* .card-menu .banner {
   background-image: url("./assets/img/plato-gral.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -739,7 +739,7 @@ footer {
 .card-menu .menu h2 {
 	letter-spacing: 1px;
 	margin: 10px 0;
-}
+} */
 /* .card-menu .menu {
   width: 100%;
   height: 5.5rem;
@@ -752,15 +752,15 @@ footer {
   background-color: transparent;
 } */
 
-.card-menu h2.name {
+/* .card-menu h2.name {
   letter-spacing: 1px;
   color: #1f1f1f;
   text-align: left;
   padding: 1rem 1rem 0.5rem;
   margin: 0;
-}
+} */
 
-.card-menu h6 {
+/* .card-menu h6 {
 	opacity: 0.6;
 	margin: 0;
 	letter-spacing: 1px;
@@ -774,14 +774,92 @@ footer {
   opacity: .9;
 	border: 0;
 	border-radius: 20px;
-	/* box-shadow: 0 10px 10px rgba(57, 248, 199, .0); */
 	color: #1f1f1f;
 	font-size: 14px;
-	/* padding: 12px 25px; */
-	/* position: relative; */
   text-decoration: none;
 	bottom: 20px;
 	right: 20px;
 	letter-spacing: 1px;
   cursor: pointer;
+} */
+
+.card-menu {
+	background-color: #54FFC6;
+	border-radius: 20px;
+  box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
+	display: flex;
+	max-width: 100%;
+	margin: 20px;
+	overflow: hidden;
+	width: 700px;
+}
+
+.card-menu h6 {
+	opacity: 0.6;
+	margin: 0;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+  color: #1f1f1f;
+}
+
+.card-menu h2 {
+	letter-spacing: 1px;
+	margin: 10px 0;
+  color: #1f1f1f;
+}
+
+.card-menu-img {
+	background-color: #1f1f1f;
+	color: #fff;
+	/* padding: 30px; */
+	max-width: 250px;
+}
+
+.card-menu-img img{
+  object-fit: cover;
+  width: 100%;
+  max-width: 370px;
+  height: 20vw;
+}
+
+.card-menu-info {
+	padding: 30px;
+	position: relative;
+	width: 100%;
+}
+
+.info-valor-menu {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	text-align: right;
+	width: 150px;
+}
+
+.info-valor-menu-texto {
+  color: #1f1f1f;
+	font-size: 14px;
+	opacity: 0.8;
+	letter-spacing: 1px;
+}
+
+.button-card-menu {
+	background-color: #1f1f11;
+  opacity: .9;
+	border: 0;
+	border-radius: 20px;
+	/* box-shadow: 0 10px 10px rgba(57, 248, 199, .0); */
+	color: white;
+	font-size: 14px;
+	padding: 12px 25px;
+	position: absolute;
+  text-decoration: none;
+	bottom: 20px;
+	right: 20px;
+	letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.button-card-menu:hover{
+  opacity: 1;
 }
