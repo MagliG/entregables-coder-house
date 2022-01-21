@@ -237,14 +237,13 @@ function insertarCarrito(plato){
   row.innerHTML = `<td>${plato.nombre}</td>
                    <td>${plato.precio}</td>
                    <td>
-                    <a href="#" class="borrar-platillo" onclick="borrarPlatillo(${plato.id})"><i class="fas fa-trash-alt" style="font-size: 15px;"></i></a>
+                    <a href="#" class="borrar-platillo" id="${plato.id}" onclick="borrarPlatillo(${plato.id})"><i class="fas fa-trash-alt" style="font-size: 15px;"></i></a>
                    </td>
                    <br>`
 
   listaPlatillos.appendChild(row);
   guardarPlatoEnElStorage(plato)
 }
-
 
 function guardarPlatoEnElStorage(plato){
   let reserva
@@ -271,6 +270,8 @@ function borrarPlatillo(id){
     }
   })
   localStorage.setItem('reserva', JSON.stringify(reserva));
+  let plato = document.getElementById(id).parentElement.parentElement
+  plato.remove()
 }
 
 function vaciarLocalStorage() {
@@ -280,6 +281,7 @@ function vaciarLocalStorage() {
     buttonsRestaurante[i].classList.remove('.disabled')
   })
 }
+
 
 // let ubicacionPrincipal = window.pageYOffset
 
