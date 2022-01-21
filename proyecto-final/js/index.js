@@ -5,7 +5,7 @@ const restaurantes = []
 const platos = []
 let restauranteSeleccionado
 const listaPlatillos = document.querySelector("#lista-carrito tbody");
-const valorBadge = 10
+let valorBadge = 0
 
 $("#reservarMesa").click(function (){
   $("#formMesas").addClass("activo")
@@ -229,10 +229,10 @@ function mostrarPostres (idRestaurante) {
 function agregarMenu(id){
   const plato = platos.find(element => element.id === id)
   insertarCarrito(plato)
+  actualizarBadge()
 }
 
 function insertarCarrito(plato){
-  // Inserto el plato en el carrito
   const row = document.createElement('tr')
   row.innerHTML = `<td>${plato.nombre}</td>
                    <td>${plato.precio}</td>
@@ -272,6 +272,12 @@ function borrarPlatillo(id){
   localStorage.setItem('reserva', JSON.stringify(reserva));
   let plato = document.getElementById(id).parentElement.parentElement
   plato.remove()
+  actualizarBadge()
+}
+
+function actualizarBadge(){
+  let reserva = obtenerReservaDelStorage()
+  badge.textContent = reserva.platos.length
 }
 
 function vaciarLocalStorage() {
