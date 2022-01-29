@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
+
 }
 
 
@@ -152,6 +154,14 @@ nav {
 }
 
 .contenido-header.activo{
+  display: flex;
+}
+
+.contenido-form{
+  display: none;
+}
+
+.contenido-form.activo{
   display: flex;
 }
 
@@ -351,6 +361,7 @@ nav {
   border: 1px solid;
   border-radius: 20px;
   transition: all .5s ease;
+  cursor: pointer;
 }
 
 .button-tab.activo{

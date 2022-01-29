@@ -41,8 +41,8 @@
               </table>
               <hr>
               <br>
-              <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar reserva</a>
-              <a href="#" id="confirmar-reserva" class="button u-full-width">Confirmar reserva</a>
+              <a href="#" id="vaciar-carrito" onclick="vaciarLocalStorage()" class="button u-full-width">Vaciar reserva</a>
+              <a href="#" id="confirmar-reserva" onclick="confirmarReserva()" class="button u-full-width">Confirmar reserva</a>
             </div>
           </div>
         </section>
@@ -54,9 +54,10 @@
             <p>Suspendisse blandit nisi velit, quis mollis ligula dapibus et.</p>
             <div class="">
               <a class="button-header" href="#seccionRestaurantes" id="verMenuOrdenar">Ver menú y ordenar</a>
+              <a class="button-header" id="reservarMesa">Reservar mesa</a>
             </div>
           </section>
-          <section class="contenido-header" id="formMesas">
+          <section class="contenido-form" id="formMesas">
             <div class="form-register">
               <label for="nombreReserva"><strong>Reserva a nombre de</strong></label>
               <input class="controls" type="text" placeholder="" name="nombreReserva" id="nombreReserva" required />

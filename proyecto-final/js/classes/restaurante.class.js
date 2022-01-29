@@ -13,6 +13,6 @@ class Restaurante{
     }
 
     tieneDisponibilidad(disponibilidadSolicitada){
-        return (this.disponibilidad > disponibilidadSolicitada)
+        return (this.disponibilidad >= disponibilidadSolicitada)
     }
 }

@@ -9,6 +9,9 @@ let valorBadge = 0
 
 $("#reservarMesa").click(function (){
   $("#formMesas").addClass("activo")
+  $("#verMenuOrdenar").remove()
+  $("#reservarMesa").remove()
+
 })
 
 $.get("./js/data/platos.json", function(data){
@@ -25,58 +28,77 @@ function traerRestaurante(idRestaurante){
 $("#verMenuOrdenar").click( function(){
   $.get("./js/data/restaurantes.json", function(data){
     $("#seccionRestaurantes").addClass("activo")
-    let contenido = ''
-    for (restaurante of data) {
-      restaurantes.push(restaurante)
-      contenido += `  <div class="card-restaurante">
-                        <div class="card-restaurante-img">
-                          <img src="${restaurante.imagen}" alt="${restaurante.nombre}">
-                        </div>
-                        <div class="card-restaurante-info">
-                          <div class="info-valor-reserva">
-                              <span class="info-valor-reserva-texto">
-                                Valor reserva: $${restaurante.costoReserva}
-                              </span>
-                            </div>
-                            <h6>${restaurante.tipoRestaurante}</h6>
-                            <h2>${restaurante.nombre}</h2>
-                            <h5><i class="fas fa-map-marker-alt"></i> ${restaurante.ubicacion}</h5>
-                            <br>
-                            <h6>${restaurante.descripcion}</h6>
-                            <a class="button-ver-menu" onclick="abrirMenu('${restaurante.menuPDF}')" >Ver menú <i class="fas fa-chevron-right"></i></a>
-                            <a class="button-card-restaurante" onclick="seleccionarRestaurante(${restaurante.id})" href="#entradas">Ordenar</a>
-                          </div>
-                        </div>
-                      `
-    }
-    $("#restaurantes").append(contenido)    
+    pintarRestaurantes(data)
   })
 })
+
+function pintarRestaurantes(restaurantes){
+  let contenido = ''
+  let restaurante
+  for(restaurante of restaurantes) {
+    contenido += `  <div class="card-restaurante">
+                      <div class="card-restaurante-img">
+                        <img src="${restaurante.imagen}" alt="${restaurante.nombre}">
+                      </div>
+                      <div class="card-restaurante-info">
+                        <div class="info-valor-reserva">
+                            <span class="info-valor-reserva-texto">
+                              Valor reserva: $${restaurante.costoReserva}
+                            </span>
+                          </div>
+                          <h6>${restaurante.tipoRestaurante}</h6>
+                          <h2>${restaurante.nombre}</h2>
+                          <h5><i class="fas fa-map-marker-alt"></i> ${restaurante.ubicacion}</h5>
+                          <br>
+                          <h6>${restaurante.descripcion}</h6>
+                          <a class="button-ver-menu" onclick="abrirMenu('${restaurante.menuPDF}')" >Ver menú <i class="fas fa-chevron-right"></i></a>
+                          <a class="button-card-restaurante" onclick="seleccionarRestaurante(${restaurante.id})" href="#entradas">Ordenar</a>
+                        </div>
+                      </div>
+                    `
+  }
+  $("#restaurantes").append(contenido) 
+}
 
 function abrirMenu(path){
   window.open(path)
 }
 
-// const comprobarDisponibilidad = document.getElementById('comprobarDisponibilidad')
-// comprobarDisponibilidad.onclick = () => {
-//   const nodoRestaurantes = document.querySelector('.restaurante')
-//   nodoRestaurantes.classList.add('activo')
-//   nuevaReserva = new Reserva(document.getElementById("nombreReserva").value,
-//                               document.getElementById("cantPersonas").value,
-//                               document.getElementById("date").value,
-//                               document.getElementById("time").value,
-//                               new Restaurante(),
-//                               0)
-//   nombreCliente = document.getElementById("nombreReserva").value
-//   let reservaCliente = new Reserva()
-//   reservaCliente = nuevaReserva 
-//   const resultado = reservaCliente.registrarReserva()
-//   if(resultado !== "ERROR"){
-//     listarRestaurantes(reservaCliente.cantidadPersonas)
-//   }else{
-//     // Se muestra mensaje indicando que hubo un error al registrar el primer paso de la reserva
-//   }
-// }
+const comprobarDisponibilidad = document.getElementById('comprobarDisponibilidad')
+comprobarDisponibilidad.onclick = () => {
+  const nodoRestaurantes = document.querySelector('.restaurante')
+  nodoRestaurantes.classList.add('activo')
+  let reservaCliente = new Reserva(document.getElementById("nombreReserva").value,
+                              document.getElementById("cantPersonas").value,
+                              document.getElementById("date").value,
+                              document.getElementById("time").value,
+                              new Restaurante(),
+                              0)
+  nombreCliente = document.getElementById("nombreReserva").value
+  const resultado = reservaCliente.registrarReserva()
+  if(resultado !== "ERROR"){
+    listarRestaurantesDisponibles(reservaCliente.cantidadPersonas)
+  }else{
+    // Se muestra mensaje indicando que hubo un error al registrar el primer paso de la reserva
+  }
+}
+
+function listarRestaurantesDisponibles(cantidadDePersonas){
+  $.get("./js/data/restaurantes.json", function(data){
+    let restaurantesDisponibles = []
+    let restaurante
+    console.log(data)
+    for(let i = 0; i < data.length; i++){
+      let restauranteClass = Object.assign(new Restaurante(), data[i])
+      if(restauranteClass.tieneDisponibilidad(cantidadDePersonas)){
+        restaurantesDisponibles.push(restauranteClass)
+      }
+    }
+    console.log(restaurantesDisponibles)
+    pintarRestaurantes(restaurantesDisponibles)
+    
+  })
+}
 
 function pintarElementos(){
   const nodoMenu = document.getElementById('menu')
@@ -116,29 +138,6 @@ function agregarRestauranteAlStorage(restaurante){
   localStorage.setItem('reserva', JSON.stringify(reserva))
 }
 
-
-// function calcularTotalValorReserva(){
-//   const reserva = JSON.parse(localStorage.getItem(nombreCliente))
-//   const costoTotal = valoresReserva + reserva.restaurante.costoReserva
-//   costoFinal = costoTotal
-//   let plantillaCostoTotal = `<div class="infoReserva">
-//                             <p style="color: #1f1f1f; text-align:center">El costo total de su reserva es: $ ${costoTotal}</p>
-//                             </div>`
-//   const mostrarTotal = document.getElementById('mostrarTotal')
-//   mostrarTotal.innerHTML+=plantillaCostoTotal
-// }
-
-// function confirmarReserva(){
-//   const reservaFinal = JSON.parse(localStorage.getItem(nombreCliente))
-//   reservaFinal.costoReserva = costoFinal
-//   localStorage.setItem(nombreCliente, JSON.stringify(reservaFinal))
-//   const mensajeExito = document.getElementById('confirmacionReserva')
-//   const plantillaExito = `<div class="infoReserva">
-//                           <p style="color: #1f1f1f; text-align:center">Reserva realizada con éxito!!!</p>
-//                           </div>`
-//   mensajeExito.innerHTML+= plantillaExito
-// }
-
 function mostrarEntradas (idRestaurante) {
   const entradasRestaurante = platos.filter(
     element => element.idRestaurante == idRestaurante && element.tipo === 'Entrada'
@@ -162,7 +161,6 @@ function mostrarEntradas (idRestaurante) {
                       <a class="button-card-menu" onclick="agregarMenu(${entrada.id})" href="#entradas">Agregar</a>
                     </div>
                   </div>`
-  // contenido -> falta implementar boton para agregar menu
   }
   $('#entradas').append(contenido)
 }
@@ -191,7 +189,6 @@ function mostrarPlatosPrincipales (idRestaurante) {
                       <a class="button-card-menu" onclick="agregarMenu(${plato.id})" href="#entradas">Agregar</a>
                     </div>
                   </div>`
-  // contenido -> falta implementar boton para agregar menu
   }
   $('#platoPrincipal').append(contenido)
 }
@@ -219,7 +216,6 @@ function mostrarPostres (idRestaurante) {
                       <a class="button-card-menu" onclick="agregarMenu(${postre.id})" href="#entradas">Agregar</a>
                     </div>
                   </div>`
-  // contenido -> falta implementar boton para agregar menu
   }
   $('#postres').append(contenido)
 }
@@ -286,6 +282,17 @@ function vaciarLocalStorage() {
   buttonsRestaurante.forEach((button, i) =>{
     buttonsRestaurante[i].classList.remove('.disabled')
   })
+  
+}
+
+function confirmarReserva(){
+  let costoFinal = 0
+  let reserva = obtenerReservaDelStorage()
+  reserva.platos.forEach(function(plato){
+    costoFinal+= plato.precio
+  })
+  alert("La reserva ha sido confirmada. El valor total de su pedido es: $" + costoFinal)
+  vaciarLocalStorage()
 }
 
 
