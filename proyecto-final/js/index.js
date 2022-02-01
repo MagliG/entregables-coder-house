@@ -288,7 +288,7 @@ function agregarMenu(id){
 function insertarCarrito(plato){
   const row = document.createElement('tr')
   row.innerHTML = `<td>${plato.nombre}</td>
-                   <td>${plato.precio}</td>
+                   <td>$${plato.precio}</td>
                    <td>
                     <a href="#" class="borrar-platillo" id="${plato.id}" onclick="borrarPlatillo(${plato.id})"><i class="fas fa-trash-alt" style="font-size: 15px;"></i></a>
                    </td>
@@ -302,12 +302,13 @@ function agregarCostoReservaAlCarrito(){
   let reserva = JSON.parse(localStorage.getItem(nombreCliente))
   const row = document.createElement('tr')
   row.innerHTML = ` <td>Reserva ${reserva.restaurante.nombre}</td>
-                    <td>${reserva.costoReserva}</td>
+                    <td>$${reserva.costoReserva}</td>
                     <td>
                       <a href="" class="borrar-platillo" id="${reserva.restaurante.id}" onclick="borrarReservaRestaurante(${reserva.restaurante.id})"><i class="fas fa-trash-alt" style="font-size: 15px;"></i></a>
                     </td>
                     <br>`
   listaCarrito.appendChild(row)
+  badge.textContent = valorBadge++
 }
 
 function guardarPlatoEnElStorage(plato){
@@ -329,11 +330,8 @@ function obtenerReservaDelStorage(){
 
 function borrarPlatillo(id){
   let reserva = obtenerReservaDelStorage()
-  reserva.platos.forEach(function(plato, index){
-    if(plato.id === id) {
-        reserva.platos.splice(index, 1);
-    }
-  })
+  let platoBorrar = reserva.platos.findIndex(element => element.id == id)
+  reserva.platos.splice(platoBorrar, 1)
   localStorage.setItem('reserva', JSON.stringify(reserva));
   let plato = document.getElementById(id).parentElement.parentElement
   plato.remove()
