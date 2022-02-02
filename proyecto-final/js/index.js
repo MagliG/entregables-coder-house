@@ -2,13 +2,12 @@ let nombreCliente = ""
 const ordenar = 'ordenar'
 const reservar = 'reservar'
 let costoFinal = 0
-let valoresReserva = 0
 const restaurantes = []
 const platos = []
 let restauranteSeleccionado
-const listaCarrito = document.querySelector("#lista-carrito tbody");
-let valorBadge = 0
 let tipoDeOperacion
+
+const listaCarrito = document.querySelector("#lista-carrito tbody");
 
 $(document).ready(function(){
   // Me traigo todos los restaurantes del sitio
@@ -313,7 +312,7 @@ function agregarCostoReservaAlCarrito(){
                     </td>
                     <br>`
   listaCarrito.appendChild(row)
-  badge.textContent = valorBadge++
+  badge.textContent = 1
 }
 
 function guardarPlatoEnElStorage(plato){
@@ -344,12 +343,17 @@ function borrarPlatillo(id){
 }
 
 function borrarReservaRestaurante(idRestaurante){
-
+  //TODO borrar restaurante de la reserva
+  // Volver a habilitar el boton para seleccionar otro restaurante
 }
 
-function actualizarBadge(){
+function actualizarBadge(tipoOperacion){
   let reserva = obtenerReservaDelStorage()
-  badge.textContent = reserva.platos.length
+  if(tipoOperacion == "reservar"){
+    badge.textContent = 1
+  }else{
+    badge.textContent = reserva.platos.length
+  }
 }
 
 function vaciarLocalStorage() {
@@ -358,7 +362,6 @@ function vaciarLocalStorage() {
   buttonsRestaurante.forEach((button, i) =>{
     buttonsRestaurante[i].classList.remove('.disabled')
   })
-  
 }
 
 function confirmarReserva(){
@@ -388,21 +391,6 @@ function confirmarReserva(){
   }
   
 }
-
-
-// let ubicacionPrincipal = window.pageYOffset
-
-// AOS.init()
-
-// window.addEventListener('scroll', function () {
-//   let desplazamientoActual = window.pageYOffset
-//   if (ubicacionPrincipal >= desplazamientoActual) {
-//     document.getElementsByTagName('nav')[0].style.top = '0px'
-//   } else {
-//     document.getElementsByTagName('nav')[0].style.top = '-100px'
-//   }
-//   ubicacionPrincipal = desplazamientoActual
-// })
 
 const buttonsTab = document.querySelectorAll('.button-tab')
 const elementosMenu = document.querySelectorAll('.contenedor-menu')
