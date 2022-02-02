@@ -8,6 +8,7 @@ const platos = []
 let restauranteSeleccionado
 const listaCarrito = document.querySelector("#lista-carrito tbody");
 let valorBadge = 0
+let tipoDeOperacion
 
 $(document).ready(function(){
   // Me traigo todos los restaurantes del sitio
@@ -38,16 +39,18 @@ function traerRestaurante(idRestaurante){
 
 $("#verMenuOrdenar").click( function(){
     $("#seccionRestaurantes").addClass("activo")
+    $("#verMenuOrdenar").remove()
+    $("#reservarMesa").remove()
     pintarRestaurantes(restaurantes, 'ordenar')
 })
 
 function pintarRestaurantes(restaurantes, tipoOperacion){
-  let contenido
+  tipoDeOperacion = tipoOperacion
+  let contenido = ''
   let restaurante
   // Falta switch
   switch(tipoOperacion){
     case 'ordenar':
-      console.log(restaurantes)
       for(restaurante of restaurantes) {
         contenido += `  <div class="card-restaurante">
                           <div class="card-restaurante-img">
@@ -215,7 +218,7 @@ function mostrarEntradas (idRestaurante) {
                       <h2>${entrada.nombre}</h2>
                       <br>
                       <h6>${entrada.descripcion}</h6>
-                      <a class="button-card-menu" onclick="agregarMenu(${entrada.id})" href="#entradas">Agregar</a>
+                      <a id="${entrada.id}" class="button-card-menu" onclick="agregarMenu(${entrada.id})" href="#entradas">Agregar</a>
                     </div>
                   </div>`
   }
@@ -280,6 +283,8 @@ function mostrarPostres (idRestaurante) {
 // FUNCIONES CARRITO
 
 function agregarMenu(id){
+  //agregar efecto rebote
+  $("#"+id).slideUp("fast").slideDown("fast")
   const plato = platos.find(element => element.id === id)
   insertarCarrito(plato)
   actualizarBadge()
@@ -330,8 +335,8 @@ function obtenerReservaDelStorage(){
 
 function borrarPlatillo(id){
   let reserva = obtenerReservaDelStorage()
-  let platoBorrar = reserva.platos.findIndex(element => element.id == id)
-  reserva.platos.splice(platoBorrar, 1)
+  let indiceBorrar = reserva.platos.findIndex(element => element.id == id)
+  reserva.platos.splice(indiceBorrar, 1)
   localStorage.setItem('reserva', JSON.stringify(reserva));
   let plato = document.getElementById(id).parentElement.parentElement
   plato.remove()
@@ -358,12 +363,30 @@ function vaciarLocalStorage() {
 
 function confirmarReserva(){
   let costoFinal = 0
-  let reserva = obtenerReservaDelStorage()
-  reserva.platos.forEach(function(plato){
-    costoFinal+= plato.precio
-  })
-  alert("La reserva ha sido confirmada. El valor total de su pedido es: $" + costoFinal)
-  vaciarLocalStorage()
+  let reserva
+  switch(tipoDeOperacion){
+    case 'ordenar':
+      reserva = obtenerReservaDelStorage()
+      reserva.platos.forEach(function(plato){
+      costoFinal+= plato.precio
+      })
+      swal("Orden realizada con éxito!", "El valor de la misma es: $" + costoFinal , "success").then(() =>{
+        location.reload()
+        vaciarLocalStorage()
+      })
+      break;
+    case 'reservar':
+      reserva = JSON.parse(localStorage.getItem(nombreCliente))
+      console.log(reserva)
+      costoFinal = reserva.restaurante.costoReserva
+      swal("Felicitaciones!", nombreCliente + ", su reserva ha sido confirmada con éxito. El valor de la misma es: $" + costoFinal + ". Lo esperamos!", "success").then(() =>{
+        location.reload()
+        vaciarLocalStorage()
+      })
+      break;
+    default:
+  }
+  
 }
 
 

@@ -22,13 +22,12 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%;
   margin: auto;
   overflow: hidden;
-  /* background-color: #b09e80; */
+  height: 44em;
 }
 
 .fondo-header{
   background-image: url(./assets/img/background-2.jpg);
 	text-align: center;
-	/* background-position: center center; */
 	background-size: cover;
 	background-repeat: no-repeat;
 	position: relative;
@@ -146,18 +145,17 @@ nav {
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: nowrap;
-  /* flex-direction: column; */
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
 
-.contenido-header.activo{
+.contenido-header.activo {
   display: flex;
 }
 
-.contenido-form{
+.contenido-form {
   display: none;
 }
 
@@ -244,7 +242,7 @@ nav {
   background: #1f1f1f;
   padding: 30px;
   margin: auto;
-  /* margin-top: 100px; */
+  margin-top: 100px;
   border-radius: 20px;
   color: white;
   box-shadow: 0 6px 22px #1f1f1f;
@@ -300,7 +298,10 @@ nav {
   font-size: 16px;
   border-radius: 20px;
   cursor: pointer;
-  box-shadow: 0 3px 16px rgba(57, 248, 199, .46);
+}
+
+.form-register .botons:hover {
+  box-shadow: 0 2px 12px rgba(57, 248, 199, .46);
 }
 
 .contenedor-restaurante {
@@ -632,7 +633,8 @@ footer {
 	max-width: 100%;
 	margin: 20px;
 	overflow: hidden;
-	width: 700px;
+	width: 50em;
+  height: 18em;
 }
 
 .card-restaurante h6 {
@@ -732,7 +734,8 @@ footer {
 	max-width: 100%;
 	margin: 20px;
 	overflow: hidden;
-	width: 700px;
+	width: 40em;
+  height: 16em;
 }
 
 .card-menu h6 {
@@ -789,7 +792,6 @@ footer {
   opacity: .9;
 	border: 0;
 	border-radius: 20px;
-	/* box-shadow: 0 10px 10px rgba(57, 248, 199, .0); */
 	color: white;
 	font-size: 14px;
 	padding: 12px 25px;
@@ -805,25 +807,10 @@ footer {
   opacity: 1;
 }
 
-/* .four.columns{
-    width: 30.6666666667%;
-}
-
-.columns {
-    margin-left: 4%; 
-}
-
-.two.columns{ 
-  width: 13.3333333333%; 
-} */
-
 .u-pull-right {
   float: right; 
 }
 
-/* .submenu {
-  position: relative;
-} */
 .submenu #carrito{
   display: none;
 }
@@ -832,8 +819,6 @@ footer {
   color: white;
   position: absolute;
   right: 0;
-  /* top: 80%;
-  right: 15%; */
   z-index: 1;
   background: #fff;
   padding: 20px;
@@ -863,12 +848,25 @@ footer {
   box-sizing: border-box; 
 }
 
-.button {
+.button-carrito {
   padding: 8px;
   border-radius: 20px;
+  border: solid 3px #1f1f1f;
   background-color: #1f1f1f;
-  color: rgb(255, 255, 255);
+  box-shadow: 0px 0.1rem 0.2rem #1f1f1f;
+  color: #fff;
   font-size: 16px;
+  letter-spacing: 1px;
+  opacity: 1;
+  cursor: pointer;
+  margin: 5px;
+  transition: .2s;
+}
+
+.button-carrito:hover{
+  background-color: #54fec6;
+  color: #1f1f1f;
+  border: solid 3px #54fec6;
 }
 
 th{
@@ -890,4 +888,39 @@ td{
   text-align: center;
   border-radius: 50%;
   font-size: 14px;
+}
+
+.swal-modal {
+  border-radius: 20px;
+}
+
+.swal-icon--success__line{
+  background-color: #54fec6;
+}
+
+.swal-icon--success__line .swal-icon--success__line--tip{
+  background-color: #54fec6;
+}
+
+.swal-icon--success__ring{
+  border: 4px solid #54fec6;
+}
+
+.swal-title{
+  color: #1f1f1f;
+}
+
+.swal-text{
+  color: #1f1f1f;
+}
+
+.swal-button{
+  border-radius: 20px;
+  background-color: #54fec6;
+  opacity: .6;
+}
+
+.swal-button:not([disabled]):hover{
+  background-color: #54fec6;
+  opacity: 1;
 }
