@@ -26,6 +26,24 @@
     "precio": 550
   },
   {
+    "id": 33,
+    "idRestaurante": 1,
+    "tipo": "Entrada",
+    "nombre": "Hummus",
+    "descripcion":
+      "Hummus de zanahoria y babaganoush. Acompañado de vegetales y raita.",
+    "precio": 550
+  },
+  {
+    "id": 34,
+    "idRestaurante": 1,
+    "tipo": "Entrada",
+    "nombre": "Portobellos",
+    "descripcion":
+      "Hummus neutro, portobellos salteados, menta, pasas de uva, maní tostado, aceite de oliva.",
+    "precio": 560
+  },
+  {
     "id": 4,
     "idRestaurante": 1,
     "tipo": "Plato principal",
@@ -51,6 +69,60 @@
     "descripcion":
       "Salsa de tomates biodinámicos infusionados con albahaca y ajo, muzzarella, panceta, huevo de campo, perejil. 4 porciones.",
     "precio": 1100
+  },
+  {
+    "id": 35,
+    "idRestaurante": 1,
+    "tipo": "Plato principal",
+    "nombre": "La desconocida stracciatella",
+    "descripcion":
+      "Salsa de tomates biodinámicos infusionados con albahaca y ajo, stracciatella, castañas de cajú, albahaca y oliva. 4 porciones.",
+    "precio": 1000
+  },
+  {
+    "id": 36,
+    "idRestaurante": 1,
+    "tipo": "Plato principal",
+    "nombre": "Rosa de los vientos",
+    "descripcion":
+      "Muzzarella, parmesano, reggio y cheddar inglés, pimienta negra recién molida y oliva. 4 porciones.",
+    "precio": 840
+  },
+  {
+    "id": 37,
+    "idRestaurante": 1,
+    "tipo": "Plato principal",
+    "nombre": "Napoles",
+    "descripcion":
+      "Salsa de tomates biodinámicos infusionados con albahaca y ajo, muzzarella, parmesano jamón cocido natural, pasta de morrones asados, perejil y oliva. 4 porciones.",
+    "precio": 1000
+  },
+  {
+    "id": 38,
+    "idRestaurante": 1,
+    "tipo": "Plato principal",
+    "nombre": "Fugazzeta especial",
+    "descripcion":
+      "Muzzarella, parmesano, cebolla morada, eneldo y oliva. 4 porciones.",
+    "precio": 840
+  },
+  {
+    "id": 39,
+    "idRestaurante": 1,
+    "tipo": "Plato principal",
+    "nombre": "Tana picante",
+    "descripcion":
+      "Salsa de tomates biodinámicos infusionados con albahaca y ajo, muzzarella, parmesano, Nduja(embutido italiano de cerdo y peperoncino), oliva, tomillo y orégano fresco. 4 porciones.",
+    "precio": 1000
+  },
+  {
+    "id": 40,
+    "idRestaurante": 1,
+    "tipo": "Plato principal",
+    "nombre": "Roja vegana",
+    "descripcion":
+      " Salsa de tomates biodinámicos infusionados con albahaca y ajo, rodajas de tomates cherry, aceitunas negras, alcaparras, babaganoush, albahaca y aceite de oliva. 4 porciones.",
+    "precio": 840
   },
   {
     "id": 7,
@@ -94,6 +166,30 @@
     "precio":  1050
   },
   {
+    "id": 41,
+    "idRestaurante": 2,
+    "tipo": "Entrada",
+    "nombre": "Chorizo antioqueño",
+    "descripcion": "Chorizo a la parrilla acompañado de papa criola y ají de huevo.",
+    "precio":  870
+  },
+  {
+    "id": 42,
+    "idRestaurante": 2,
+    "tipo": "Entrada",
+    "nombre": "Carimañolas",
+    "descripcion": "Amasijo de yuca relleno de carne acompañado de suero costeño.",
+    "precio":  1100
+  },
+  {
+    "id": 45,
+    "idRestaurante": 2,
+    "tipo": "Entrada",
+    "nombre": "Sopa campesina",
+    "descripcion": "Fondo de ave con brunoise de pollo, habichuela, zanahoria, zucchini, maíz y cilantro.",
+    "precio":  1100
+  },
+  {
     "id": 12,
     "idRestaurante": 2,
     "tipo": "Plato principal",
@@ -126,6 +222,38 @@
     "precio":  2000
   },
   {
+    "id": 42,
+    "idRestaurante": 2,
+    "tipo": "Plato principal",
+    "nombre": "Mojarra frita",
+    "descripcion": "Pescado adobado con ajo, cebolla frita, acompañado de patcón tostado, arroz de coco y ensalada caribeña.",
+    "precio":  1900
+  },
+  {
+    "id": 43,
+    "idRestaurante": 2,
+    "tipo": "Plato principal",
+    "nombre": "Cazuela de mariscos",
+    "descripcion": "Sopa de la región Caribe, compuesta por reducción de bisque con mariscos flambeados acompañado de frescos patacones tostados y arroz de coco.",
+    "precio":  2100
+  },
+  {
+    "id": 44,
+    "idRestaurante": 2,
+    "tipo": "Plato principal",
+    "nombre": "Bistec a caballo",
+    "descripcion": "Corte de lomo ancho asado al termino bañado en salsa criolla (guiso de cebolla y tomate) y huevo frito, acompañado de arroz blanco y aguacate.",
+    "precio":  1970
+  },
+  {
+    "id": 50,
+    "idRestaurante": 2,
+    "tipo": "Plato principal",
+    "nombre": "Ensalada japonesa",
+    "descripcion": "Pulpo baby y calamares salteados en ajo en cama de lechuga escarola, lechuga lisa, tomate cerezado y mango aderezados en un dresing de cilantro.",
+    "precio":  1880
+  },
+  {
     "id": 16,
     "idRestaurante": 2,
     "tipo": "Postre",
@@ -150,75 +278,147 @@
     "precio":  560
   },
   {
+    "id": 46,
+    "idRestaurante": 2,
+    "tipo": "Postre",
+    "nombre": "Tiramisú frío de la Casa",
+    "descripcion": "",
+    "precio":  720
+  },
+  {
     "id": 19,
     "idRestaurante": 3,
     "tipo": "Entrada",
-    "nombre": "",
-    "descripcion": "",
-    "precio":  560
+    "nombre": "Tartín de 'Atún'",
+    "descripcion": "Con guacamole, quinoa tabule, huevo vegan, remolacha y pepinillos; terminado con salsa teriyaki.",
+    "precio":  590
   },
   {
     "id": 20,
     "idRestaurante": 3,
     "tipo": "Entrada",
-    "nombre": "",
-    "descripcion": "",
-    "precio":  560
+    "nombre": "Papas asadas",
+    "descripcion": "Con salsa de tomate, queso fundido y guacamole.",
+    "precio":  580
   },
   {
     "id": 21,
     "idRestaurante": 3,
     "tipo": "Entrada",
-    "nombre": "",
-    "descripcion": "",
-    "precio":  560
+    "nombre": "Brusquetas Raw de girasol y tomate",
+    "descripcion": "Con queso de cajú, tomates secos marinados, hongos deshidratados, olivas, frutos secos, pasas, palta, pickles, verdeo y espinaca; terminadas con mayonesa vegana, rawmesan y pera fresca.",
+    "precio":  600
   },
   {
     "id": 22,
     "idRestaurante": 3,
-    "tipo": "Plato principal",
-    "nombre": "",
-    "descripcion": "",
-    "precio":  560
+    "tipo": "Entrada",
+    "nombre": "Brusquetas Raw de girasol y tomate",
+    "descripcion": "Con queso de cajú, tomates secos marinados, hongos deshidratados, olivas, frutos secos, pasas, palta, pickles, verdeo y espinaca; terminadas con mayonesa vegana, rawmesan y pera fresca.",
+    "precio":  600
   },
   {
     "id": 23,
     "idRestaurante": 3,
     "tipo": "Plato principal",
-    "nombre": "",
-    "descripcion": "",
-    "precio":  560
+    "nombre": "Hamburguesa de quinoa y mijo",
+    "descripcion": "Hamburguesa en pan brioche con cebollas, rehogadas, queso, mostaza y kétchup , huevo a la plancha, guacamole, pepinillos y coleslaw con mayonesa vegana, mostaza Raw y miel. Acompañada con papas asadas.",
+    "precio":  980
   },
   {
     "id": 24,
     "idRestaurante": 3,
     "tipo": "Plato principal",
-    "nombre": "",
-    "descripcion": "",
-    "precio":  560
+    "nombre": "Wok de arroz yamaní",
+    "descripcion": "Acompañado con vegetales de estación, cubitos de tofu, salsa de soja y miel; terminado con mix de semillas, cajú tostado y salsa teriyaki.",
+    "precio":  970
   },
   {
     "id": 25,
     "idRestaurante": 3,
-    "tipo": "Postre",
-    "nombre": "",
-    "descripcion": "",
-    "precio":  560
+    "tipo": "Plato principal",
+    "nombre": "Tuna club sándwich",
+    "descripcion": "Acompañado con huevo vegan, lechuga, tomates secos, vegetales frescos, pepinillos, olivas negras y mayonesa vegana. Papas asadas al curry, ketchup Raw y ensalada coleslaw con cajú, mayonesa vegana, miel y mostaza Raw. ",
+    "precio":  980
   },
   {
-    "id": 26,
+    "id": 25,
     "idRestaurante": 3,
-    "tipo": "Postre",
-    "nombre": "",
-    "descripcion": "",
-    "precio":  560
+    "tipo": "Plato principal",
+    "nombre": "Ensalada Proteína",
+    "descripcion": "Hojas verdes, vegetales de estación, arroz teriyaki, cubitos de tofu, tomates cherry, palta, alga nori, calabaza asada y champignones frescos; terminada con pickles caseros, cilantro, cajú tostado y semillas de sésamo.",
+    "precio":  990
   },
   {
     "id": 27,
     "idRestaurante": 3,
+    "tipo": "Plato principal",
+    "nombre": "Power pizza Buenos Aires Verde",
+    "descripcion": "De variedad de vegetales frescos y asados, quinoa tabule, huevo vegan, tomates secos y olivas, terminada con queso de cajú ahumado, guacamoles, pepinillos, rawmesan y mayonesa de chili.",
+    "precio":  995
+  },
+  {
+    "id": 47,
+    "idRestaurante": 3,
+    "tipo": "Plato principal",
+    "nombre": "Taco Buenos Aires Verde",
+    "descripcion": "Relleno de variedad de vegetales frescos y tomates deshidratados, guacamole, tomates secos en conserva, ricota de cajú y pepinillos; terminado con cebolla, perejil, cilantro y mayonesa de chile; acompañado de mole, queso de cajú ahumado y clásico, ricota de cajú guacamole y nachos ahumados; terminados con semillas de chía, brotes y aceite de oliva.",
+    "precio":  995
+  },
+  {
+    "id": 48,
+    "idRestaurante": 3,
+    "tipo": "Plato principal",
+    "nombre": "Lasagna",
+    "descripcion": "Rellena de vegetales de estación, tomates secos, olivas negras, queso y ricota de castañas de cajú; terminada con salsa de tomate. Acompañada de ensalada de hojas verdes, vegetales de temporada, brotes y semillas activadas.",
+    "precio":  970
+  },
+  {
+    "id": 49,
+    "idRestaurante": 3,
+    "tipo": "Plato principal",
+    "nombre": "Canelón",
+    "descripcion": "Relleno de vegetales, hongos deshidratados, tomates secos y queso de cajú, bañado con salsa de tomate y mayonesa vegana; terminado con cebolla y perejil. Acompañado de guacamole, ensalada coleslaw y olivas negras condimentadas.",
+    "precio":  1010
+  },
+  {
+    "id": 28,
+    "idRestaurante": 3,
     "tipo": "Postre",
-    "nombre": "",
-    "descripcion": "",
-    "precio":  560
+    "nombre": "Cookies Raw",
+    "descripcion": "De cacao bañado en chocolate y de frutos secos, pera, canela, coco y dátiles.",
+    "precio":  195
+  },
+  {
+    "id": 29,
+    "idRestaurante": 3,
+    "tipo": "Postre",
+    "nombre": "Bombones Raw",
+    "descripcion": "Clásico con naranja, pistachos, maca, polen, chocolatina de menta.",
+    "precio":  85
+  },
+  {
+    "id": 30,
+    "idRestaurante": 3,
+    "tipo": "Postre",
+    "nombre": "Dátil relleno",
+    "descripcion": "De crema de cajú especiada, bañado en chocolate y pistacho.",
+    "precio":  175
+  },
+  {
+    "id": 31,
+    "idRestaurante": 3,
+    "tipo": "Postre",
+    "nombre": "Tarteleta de frutas de estación",
+    "descripcion": "Con crema de cajú con especias de Medio Oriente y naranja, crema chantilly de tofu, terminada con cacao crudo, polen, maca y aceite de coco.",
+    "precio":  460
+  },
+  {
+    "id": 32,
+    "idRestaurante": 3,
+    "tipo": "Postre",
+    "nombre": "Porción de torta",
+    "descripcion": "Con quenelle de chantilly de tofu.",
+    "precio":  495
   }
 ]

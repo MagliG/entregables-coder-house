@@ -61,8 +61,8 @@ function pintarRestaurantes(restaurantes, tipoOperacion){
                               <h5><i class="fas fa-map-marker-alt"></i> ${restaurante.ubicacion}</h5>
                               <br>
                               <h6>${restaurante.descripcion}</h6>
-                              <a class="button-ver-menu" onclick="abrirMenu('${restaurante.menuPDF}')" >Ver menú <i class="fas fa-chevron-right"></i></a>
-                              <a class="button-card-restaurante" onclick="seleccionarRestaurante(${restaurante.id}, ${restaurante.costoReserva}, ${tipoOperacion})" href="#entradas">Ordenar</a>
+                              <a class="button-ver-menu" onclick="abrirMenu('${restaurante.menuPDF}')" >Ver carta <i class="fas fa-chevron-right"></i></a>
+                              <a class="button-card-restaurante" onclick="seleccionarRestaurante(${restaurante.id}, ${restaurante.costoReserva}, ${tipoOperacion})" href="#menu">Ordenar</a>
                             </div>
                           </div>
                         `
@@ -115,6 +115,7 @@ comprobarDisponibilidad.onclick = () => {
                               0)
   nombreCliente = document.getElementById("nombreReserva").value
   const resultado = reservaCliente.registrarReserva()
+  window.scroll(0, 2500)
   if(resultado !== "ERROR"){
     listarRestaurantesDisponibles(reservaCliente.cantidadPersonas)
   }else{
@@ -144,10 +145,10 @@ function pintarElementos(){
 
 function seleccionarRestaurante(idRestaurante, costoReserva, tipoOperacion){
   restauranteSeleccionado = traerRestaurante(idRestaurante)
+  const buttonsRestaurante = document.querySelectorAll('.button-card-restaurante')
   switch(tipoOperacion){
     case 'ordenar':
         crearReserva()
-        const buttonsRestaurante = document.querySelectorAll('.button-card-restaurante')
         buttonsRestaurante.forEach((button, i) =>{
           buttonsRestaurante[i].classList.add('disabled')
         })
@@ -158,12 +159,12 @@ function seleccionarRestaurante(idRestaurante, costoReserva, tipoOperacion){
         mostrarPostres(idRestaurante)
         break;
       case 'reservar':
+        buttonsRestaurante.forEach((button, i) =>{
+          buttonsRestaurante[i].classList.add('disabled')
+        })
         actualizarCostoReservaStorage(costoReserva)
         agregarRestauranteAlStorage(restauranteSeleccionado, reservar)
         agregarCostoReservaAlCarrito()
-        mostrarEntradas(idRestaurante)
-        mostrarPlatosPrincipales(idRestaurante)
-        mostrarPostres(idRestaurante)
         break;
       default: 
         alert("Error inesperado al seleccionar el restaurante")
@@ -283,7 +284,7 @@ function mostrarPostres (idRestaurante) {
 
 function agregarMenu(id){
   //agregar efecto rebote
-  $("#"+id).slideUp("fast").slideDown("fast")
+  $("#"+id).addClass("activo")
   const plato = platos.find(element => element.id === id)
   insertarCarrito(plato)
   actualizarBadge()
