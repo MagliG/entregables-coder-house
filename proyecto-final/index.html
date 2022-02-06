@@ -57,17 +57,22 @@
             </div>
           </section>
           <section class="contenido-form" id="formMesas">
-            <div class="form-register">
-              <label for="nombreReserva"><strong>Reserva a nombre de</strong></label>
-              <input class="controls" type="text" placeholder="" name="nombreReserva" id="nombreReserva" required />
-              <label for="cantPersonas"><strong>Cantidad de personas</strong></label>
-              <input class="controls" type="number" placeholder="" name="cantPersonas" id="cantPersonas" required />
-              <label for="date"><strong>Fecha de reserva</strong></label>
-              <input class="controls" type="date" placeholder="" name="date" id="date" required />
-              <label for="time"><strong>Hora</strong></label>
-              <input class="controls" type="time" placeholder="" name="time" id="time" required />
-            <button  type="submit" class="botons" id="comprobarDisponibilidad" onclick="window.location.href='#seccionRestaurantes'"><strong>Comprobar disponibilidad</strong></button>
-          </div>
+            <form class="form-register" id="form-register">
+              <!-- NOMBRE RESERVA -->
+              <label for="nombreReserva" ><strong><span style="color: red;">*</span> Reserva a nombre de</strong></label>
+              <input class="controls" type="text" id="nombreReserva" placeholder="" name="nombreReserva" aria-required="true" />
+              <!-- CANTIDAD DE PERSONAS -->
+              <label for="cantPersonas" ><strong><span style="color: red;">*</span> Cantidad de personas</strong></label>
+              <input class="controls" type="number" id="cantPersonas" placeholder="" name="cantPersonas" />
+              <!-- FECHA DE RESERVA -->
+              <label for="date"><strong><span style="color: red;">*</span> Fecha de reserva</strong></label>
+              <input class="controls" type="date" placeholder="" name="date" id="date" />
+              <!-- HORA -->
+              <label for="time"><strong><span style="color: red;">*</span> Hora</strong></label>
+              <input class="controls" type="time" placeholder="" name="time" id="time" />
+            <button  type="submit" class="botons"><strong>Comprobar disponibilidad</strong></button>
+            <div id="mensajes-error"></div>
+            </form>
           </section>
         </section>
       </div>

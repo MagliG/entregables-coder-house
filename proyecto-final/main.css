@@ -304,6 +304,14 @@ nav {
   box-shadow: 0 2px 12px rgba(57, 248, 199, .46);
 }
 
+.mensaje-error{
+  color: red!important;
+  font-size: 14px!important;
+  font-weight: 300!important;
+  line-height: 100%!important;
+  margin: 1px 0 1px 0!important;
+}
+
 .contenedor-restaurante {
   display: flex;
   flex-wrap: wrap;

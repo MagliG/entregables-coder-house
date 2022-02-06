@@ -103,8 +103,11 @@ function abrirMenu(path){
   window.open(path)
 }
 
-const comprobarDisponibilidad = document.getElementById('comprobarDisponibilidad')
-comprobarDisponibilidad.onclick = () => {
+
+// FORMULARIO 
+
+function comprobarDisponibilidad(){
+  comprobarPreviaCargaDeRestaurantes()
   const nodoRestaurantes = document.querySelector('.restaurante')
   nodoRestaurantes.classList.add('activo')
   let reservaCliente = new Reserva(document.getElementById("nombreReserva").value,
@@ -119,9 +122,68 @@ comprobarDisponibilidad.onclick = () => {
   if(resultado !== "ERROR"){
     listarRestaurantesDisponibles(reservaCliente.cantidadPersonas)
   }else{
-    // Se muestra mensaje indicando que hubo un error al registrar el primer paso de la reserva
   }
 }
+
+function comprobarPreviaCargaDeRestaurantes(){
+  let restaurantes = document.querySelectorAll('.card-restaurante')
+  if(restaurantes.length > 0){
+    for(restaurante of restaurantes){
+      restaurante.remove()
+    }
+  }
+}
+
+const formulario = document.getElementById("form-register")
+formulario.addEventListener("submit", function(e){
+  e.preventDefault()
+
+  comprobarPrevioMensajeError()
+
+  var hayError = false
+  var mensajesError = []
+  var nombreReserva = document.getElementById("nombreReserva").value
+  var cantPersonas = document.getElementById("cantPersonas").value
+  var fecha = document.getElementById("date").value
+  var hora = document.getElementById("time").value
+  if(nombreReserva === null || nombreReserva === '' || !nombreReserva || nombreReserva === undefined){
+    mensajesError.push('Ingrese su nombre')
+    hayError = true
+  }
+  if(cantPersonas === null || cantPersonas === '' || !cantPersonas){
+    mensajesError.push('Ingrese la cantidad de personas')
+    hayError = true
+  }
+  if(fecha === null || fecha === ''){
+    mensajesError.push('Ingrese la fecha de reserva')
+    hayError = true
+  }
+  if(hora === null || hora === ''){
+    mensajesError.push('Ingrese la hora de reserva')
+    hayError = true
+  }
+  if(mensajesError.length > 0){
+    let contenido = ``
+    for(let i = 0; i<mensajesError.length; i++){
+      contenido += ` <p class="mensaje-error"> * ${mensajesError[i]} </p>`
+    }
+    $('#mensajes-error').append(contenido)
+  }
+  if(!hayError){
+    comprobarDisponibilidad()
+  }
+})
+
+function comprobarPrevioMensajeError(){
+  let mensajesError = document.querySelectorAll('.mensaje-error')
+  if(mensajesError.length > 0){
+    for(let i = 0; i < mensajesError.length; i++){
+      mensajesError[i].remove()
+    }
+  }
+}
+
+// FIN FORMULARIO 
 
 function listarRestaurantesDisponibles(cantidadDePersonas){
     let restaurantesDisponibles = []
@@ -149,9 +211,10 @@ function seleccionarRestaurante(idRestaurante, costoReserva, tipoOperacion){
   switch(tipoOperacion){
     case 'ordenar':
         crearReserva()
-        buttonsRestaurante.forEach((button, i) =>{
-          buttonsRestaurante[i].classList.add('disabled')
-        })
+        // buttonsRestaurante.forEach((button, i) =>{
+        //   buttonsRestaurante[i].classList.add('disabled')
+        // })
+        comprobarPreviaCargaDePlatos()
         pintarElementos()
         agregarRestauranteAlStorage(restauranteSeleccionado, ordenar)
         mostrarEntradas(idRestaurante)
@@ -168,6 +231,15 @@ function seleccionarRestaurante(idRestaurante, costoReserva, tipoOperacion){
         break;
       default: 
         alert("Error inesperado al seleccionar el restaurante")
+  }
+}
+
+function comprobarPreviaCargaDePlatos(){
+  let platos = document.querySelectorAll('.card-menu')
+  if(platos.length > 0){
+    for(plato of platos){
+      plato.remove()
+    }
   }
 }
 
@@ -284,13 +356,17 @@ function mostrarPostres (idRestaurante) {
 
 function agregarMenu(id){
   //agregar efecto rebote
+  // TODO revisar efecto
   $("#"+id).addClass("activo")
+  console.log($("#"+id))
+  $("#"+id).removeClass("activo")
+  console.log($("#"+id))
   const plato = platos.find(element => element.id === id)
-  insertarCarrito(plato)
+  insertarCarrito(plato, id)
   actualizarBadge()
 }
 
-function insertarCarrito(plato){
+function insertarCarrito(plato, id){
   const row = document.createElement('tr')
   row.innerHTML = `<td>${plato.nombre}</td>
                    <td>$${plato.precio}</td>
