@@ -237,6 +237,36 @@ nav {
   display: flex;
 }
 
+.contacto{
+  padding: 100px;
+  background: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.contacto label{
+  color: #54fec6;
+  font-size: 18px;
+  justify-content: center;
+}
+
+.contacto button{
+  display: flex;
+  background-color: #54fec6;
+  color: #1f1f1f;
+  border-radius: 20px;
+  font-size: 16px;
+  padding: 10px;
+  border: #54fec6 solid 1px;
+  cursor: pointer;
+}
+
+.contacto button:hover{
+  background-color: #1f1f1f;
+  color: #54fec6;
+}
+
 .form-register {
   width: 400px;
   background: #1f1f1f;
@@ -352,6 +382,7 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .button-tab {
@@ -741,8 +772,8 @@ footer {
 	max-width: 100%;
 	margin: 20px;
 	overflow: hidden;
-	width: 40em;
-  height: 16em;
+	width: 36em;
+  height: 18em;
 }
 
 .card-menu h6 {
@@ -751,6 +782,7 @@ footer {
 	letter-spacing: 1px;
 	text-transform: uppercase;
   color: #1f1f1f;
+  font-size: 12px;
 }
 
 .card-menu h2 {
@@ -790,9 +822,11 @@ footer {
 
 .info-valor-menu-texto {
   color: #1f1f1f;
-	font-size: 14px;
+	font-size: 16px;
 	opacity: 0.8;
 	letter-spacing: 1px;
+  font-weight: bold;
+
 }
 
 .button-card-menu {
@@ -815,7 +849,7 @@ footer {
   opacity: 1;
 }
 
-.button-card-menu.activo{
+.button-card-menu{
   -webkit-animation: jello-horizontal 0.4s both;
   animation: jello-horizontal 0.4s both;
 }
