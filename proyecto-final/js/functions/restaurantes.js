@@ -1,3 +1,4 @@
+let restauranteSeleccionado
 
 function traerRestaurante(idRestaurante){
     const restauranteEncontrado = restaurantes.find(element => element.id === idRestaurante)

@@ -1,11 +1,11 @@
+const listaCarrito = document.querySelector("#lista-carrito tbody");
+let costoFinal = 0
+
 function agregarMenu(id){
-    //agregar efecto rebote
-    // TODO revisar efecto
-    // $("#"+id).toggle()
-    // $("#"+id).fadeOut(100).fadeIn(100)
     const plato = platos.find(element => element.id === id)
     insertarCarrito(plato, id)
     actualizarBadge()
+    $("#badge").addClass("activo")
   }
   
 function insertarCarrito(plato, id){
@@ -81,7 +81,7 @@ function actualizarBadge(tipoOperacion){
     }else{
       badge.textContent = reserva.platos.length
     }
-  }
+}
   
 function vaciarLocalStorage() {
     localStorage.clear();

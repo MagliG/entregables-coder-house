@@ -1,13 +1,9 @@
 let nombreCliente = ""
 const ordenar = 'ordenar'
 const reservar = 'reservar'
-let costoFinal = 0
 const restaurantes = []
 const platos = []
-let restauranteSeleccionado
 let tipoDeOperacion
-
-const listaCarrito = document.querySelector("#lista-carrito tbody");
 
 $(document).ready(function(){
   // Me traigo todos los restaurantes del sitio
