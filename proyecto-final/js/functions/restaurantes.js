@@ -9,7 +9,6 @@ function pintarRestaurantes(restaurantes, tipoOperacion){
     tipoDeOperacion = tipoOperacion
     let contenido = ''
     let restaurante
-    // Falta switch
     switch(tipoOperacion){
       case 'ordenar':
         for(restaurante of restaurantes) {
@@ -83,9 +82,6 @@ function seleccionarRestaurante(idRestaurante, costoReserva, tipoOperacion){
     switch(tipoOperacion){
       case 'ordenar':
           crearReserva()
-          // buttonsRestaurante.forEach((button, i) =>{
-          //   buttonsRestaurante[i].classList.add('disabled')
-          // })
           comprobarPreviaCargaDePlatos()
           pintarElementos()
           agregarRestauranteAlStorage(restauranteSeleccionado, ordenar)
@@ -114,7 +110,6 @@ function agregarRestauranteAlStorage(restaurante, tipoOperacion){
       localStorage.setItem('reserva', JSON.stringify(reservaO))
     break;
     case 'reservar': 
-    // Revisar no me está actualizando el restaurante si no que lo borra
       let reservaR = JSON.parse(localStorage.getItem(nombreCliente))
       reservaR.restaurante = restaurante
       localStorage.setItem(nombreCliente, JSON.stringify(reservaR))
