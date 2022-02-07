@@ -108,7 +108,6 @@ function confirmarReserva(){
         break;
       case 'reservar':
         reserva = JSON.parse(localStorage.getItem(nombreCliente))
-        console.log(reserva)
         costoFinal = reserva.restaurante.costoReserva
         swal("Felicitaciones!", nombreCliente + ", su reserva ha sido confirmada con éxito. El valor de la misma es: $" + costoFinal + ". Lo esperamos!", "success").then(() =>{
           location.reload()
@@ -117,6 +116,20 @@ function confirmarReserva(){
         break;
       default:
     } 
+}
+
+function vaciarCarrito(){
+    let itemsCarrito = document.getElementById("items-carrito")
+    var child = itemsCarrito.lastElementChild
+    while(child){
+        itemsCarrito.removeChild(child)
+        child = itemsCarrito.lastElementChild
+    }
+    badge.textContent = 0
+    localStorage.clear();
+    if($("#menu").hasClass("activo")){
+        $("#menu").removeClass("activo")
+      }
 }
 
 function actualizarCostoReservaStorage(costoReserva){

@@ -23,12 +23,14 @@ $(document).ready(function(){
 
 $("#reservarMesa").click(function (){
   limpiarSecciones()
+  vaciarCarrito()
   $("#formMesas").addClass("activo")
 })
 
 
 $("#verMenuOrdenar").click( function(){
   limpiarSecciones()
+  vaciarCarrito()
   $("#seccionRestaurantes").addClass("activo")
   pintarRestaurantes(restaurantes, 'ordenar')
 })
@@ -41,6 +43,9 @@ function limpiarSecciones(){
   $("#seccionRestaurantes").removeClass("activo")
   if($("#formMesas").hasClass("activo")){
     $("#formMesas").removeClass("activo")
+  }
+  if($("#menu").hasClass("activo")){
+    $("#menu").removeClass("activo")
   }
 }
 
