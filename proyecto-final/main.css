@@ -831,7 +831,7 @@ footer {
 
 .button-card-menu {
 	background-color: #1f1f11;
-  opacity: .9;
+  opacity: .8;
 	border: 0;
 	border-radius: 20px;
 	color: white;
@@ -843,6 +843,10 @@ footer {
 	right: 20px;
 	letter-spacing: 1px;
   cursor: pointer;
+}
+
+.button-card-menu:hover{
+  opacity: 1;
 }
 
 .u-pull-right {
