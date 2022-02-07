@@ -87,4 +87,11 @@ function comprobarPreviaCargaDePlatos(){
         plato.remove()
       }
     }
+    let itemsCarrito = document.getElementById("items-carrito")
+    var child = itemsCarrito.lastElementChild
+    while(child){
+        itemsCarrito.removeChild(child)
+        child = itemsCarrito.lastElementChild
+    }
+    badge.textContent = 0
   }
